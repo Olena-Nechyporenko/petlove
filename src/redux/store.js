@@ -10,7 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { authReducer } from './auth/slice.js';
+import { authReducer } from './auth/authSlice';
 
 const authPersist = {
   key: 'auth',

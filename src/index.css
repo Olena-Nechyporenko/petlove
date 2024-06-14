@@ -1,6 +1,11 @@
 @import-normalize;
 
 :root {
+  --accent-color: #f6b83d;
+  --main-txt-color: #262626;
+  --hover-color: #fbe7c1;
+  --secondary-bg-color: #fff4df;
+  --light-color: #fff;
   --main-transition: 250ms linear;
 }
 
