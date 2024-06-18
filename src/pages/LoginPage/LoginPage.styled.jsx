@@ -4,6 +4,7 @@ import imgTab from '../../images/login-tab.jpg';
 import imgDesk from '../../images/login-desk.jpg';
 
 export const Wrapper = styled.section`
+  position: relative;
   padding-bottom: 30px;
 
   @media screen and (min-width: 1280px) {

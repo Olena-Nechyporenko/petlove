@@ -2,16 +2,18 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
+  position: relative;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 ${props => (props.ishomepage === 'true' ? '40px' : '20px')};
 
   @media screen and (min-width: 768px) {
-    padding: 0 32px;
+    padding: 0 ${props => (props.ishomepage === 'true' ? '64px' : '32px')};
   }
 
   @media screen and (min-width: 1280px) {
-    padding: 0 64px;
+    padding: 0 ${props => (props.ishomepage === 'true' ? '96px' : '64px')};
   }
 `;
 
@@ -20,7 +22,7 @@ export const LogoLink = styled(NavLink)`
   font-size: 20px;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--main-txt-color);
+  color: ${props => (props.ishomepage === 'true' ? '#fff' : '#262626')};
   display: flex;
   align-items: center;
   padding: 43px 0;
@@ -82,4 +84,5 @@ export const BurgerIcon = styled.svg`
   width: 32px;
   height: 32px;
   padding: 43px 0;
+  fill: #fff;
 `;

@@ -31,7 +31,8 @@ export const Menu = styled.aside`
   z-index: 10;
   width: 218px;
   height: 100vh;
-  background-color: var(--accent-color);
+  background-color: ${props =>
+    props.ishomepage === 'true' ? '#fff' : '#f6b83d'};
   display: flex;
   flex-direction: column;
 
@@ -90,8 +91,12 @@ export const Link = styled(NavLink)`
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.03em;
-  color: var(--light-color);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: ${props => (props.ishomepage === 'true' ? '#262626' : '#fff')};
+  border: 1px solid
+    ${props =>
+      props.ishomepage === 'true'
+        ? 'rgba(38, 38, 38, 0.15)'
+        : 'rgba(255, 255, 255, 0.15)'};
   border-radius: 30px;
   display: flex;
   justify-content: center;
@@ -100,7 +105,9 @@ export const Link = styled(NavLink)`
   width: 120px;
 
   &.active {
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid
+      ${props =>
+        props.ishomepage === 'true' ? '#f6b83d' : 'rgba(255, 255, 255, 0.5)'};
   }
 
   @media screen and (min-width: 768px) {
@@ -134,8 +141,11 @@ export const AuthLinkLogin = styled(NavLink)`
   letter-spacing: -0.03em;
   text-transform: uppercase;
   color: var(--light-color);
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: ${props =>
+    props.ishomepage === 'true' ? '#F6B83D' : 'transparent'};
+  border: 1px solid
+    ${props =>
+      props.ishomepage === 'true' ? 'transparent' : 'rgba(255, 255, 255, 0.5)'};
   border-radius: 30px;
   display: flex;
   justify-content: center;
