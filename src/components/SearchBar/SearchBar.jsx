@@ -3,7 +3,7 @@ import {
   SearchBarWrapper,
   Title,
   InputWrapper,
-  SearchInput,
+  SearchField,
   SearchButton,
   SearchIcon,
 } from './SearchBar.styled';
@@ -17,7 +17,7 @@ export const SearchBar = () => {
     <SearchBarWrapper>
       <Title>News</Title>
       <InputWrapper>
-        <SearchInput
+        <SearchField
           type="text"
           value={searchText}
           onChange={e => setSearchText(e.currentTarget.value)}

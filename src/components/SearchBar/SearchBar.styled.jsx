@@ -14,10 +14,10 @@ export const SearchBarWrapper = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    padding: 64px 0 60px;
+    padding: 64px 32px 60px;
   }
 `;
-export const Title = styled.h2`
+export const Title = styled.h1`
   font-weight: 700;
   font-size: 28px;
   line-height: 1;
@@ -38,7 +38,7 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const SearchInput = styled.input`
+export const SearchField = styled.input`
   font-family: inherit;
   font-weight: 500;
   font-size: 14px;
