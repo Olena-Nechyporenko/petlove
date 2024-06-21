@@ -1,13 +1,18 @@
 {
   "files": {
     "main.css": "/petlove/static/css/main.922c3ecd.css",
-    "main.js": "/petlove/static/js/main.8e166492.js",
+    "main.js": "/petlove/static/js/main.eab258dd.js",
     "static/js/872.cd1e906f.chunk.js": "/petlove/static/js/872.cd1e906f.chunk.js",
-    "static/js/939.f5eb7bf8.chunk.js": "/petlove/static/js/939.f5eb7bf8.chunk.js",
-    "static/js/517.b096196e.chunk.js": "/petlove/static/js/517.b096196e.chunk.js",
-    "static/js/278.eabf9971.chunk.js": "/petlove/static/js/278.eabf9971.chunk.js",
+    "static/js/748.dfd448a5.chunk.js": "/petlove/static/js/748.dfd448a5.chunk.js",
+    "static/js/335.824656ec.chunk.js": "/petlove/static/js/335.824656ec.chunk.js",
+    "static/js/278.37cd23a6.chunk.js": "/petlove/static/js/278.37cd23a6.chunk.js",
+    "static/js/840.d56db1b2.chunk.js": "/petlove/static/js/840.d56db1b2.chunk.js",
+    "static/js/908.3e5e59bf.chunk.js": "/petlove/static/js/908.3e5e59bf.chunk.js",
     "static/js/794.3192eefc.chunk.js": "/petlove/static/js/794.3192eefc.chunk.js",
-    "static/js/568.175868ae.chunk.js": "/petlove/static/js/568.175868ae.chunk.js",
+    "static/js/705.fb623ee1.chunk.js": "/petlove/static/js/705.fb623ee1.chunk.js",
+    "static/js/727.3fc6c789.chunk.js": "/petlove/static/js/727.3fc6c789.chunk.js",
+    "static/js/807.698f000a.chunk.js": "/petlove/static/js/807.698f000a.chunk.js",
+    "static/js/160.0176a4e4.chunk.js": "/petlove/static/js/160.0176a4e4.chunk.js",
     "static/media/homepage-img-desk.jpg": "/petlove/static/media/homepage-img-desk.da4510d881b141bcd727.jpg",
     "static/media/homepage-img-tab.jpg": "/petlove/static/media/homepage-img-tab.f2de549aa1f8c6f81bcd.jpg",
     "static/media/register-desk.jpg": "/petlove/static/media/register-desk.540cd11fcf5995e9ba68.jpg",
@@ -19,16 +24,21 @@
     "static/media/login-mob.jpg": "/petlove/static/media/login-mob.0fdaa20a070a3728c7fe.jpg",
     "index.html": "/petlove/index.html",
     "main.922c3ecd.css.map": "/petlove/static/css/main.922c3ecd.css.map",
-    "main.8e166492.js.map": "/petlove/static/js/main.8e166492.js.map",
+    "main.eab258dd.js.map": "/petlove/static/js/main.eab258dd.js.map",
     "872.cd1e906f.chunk.js.map": "/petlove/static/js/872.cd1e906f.chunk.js.map",
-    "939.f5eb7bf8.chunk.js.map": "/petlove/static/js/939.f5eb7bf8.chunk.js.map",
-    "517.b096196e.chunk.js.map": "/petlove/static/js/517.b096196e.chunk.js.map",
-    "278.eabf9971.chunk.js.map": "/petlove/static/js/278.eabf9971.chunk.js.map",
+    "748.dfd448a5.chunk.js.map": "/petlove/static/js/748.dfd448a5.chunk.js.map",
+    "335.824656ec.chunk.js.map": "/petlove/static/js/335.824656ec.chunk.js.map",
+    "278.37cd23a6.chunk.js.map": "/petlove/static/js/278.37cd23a6.chunk.js.map",
+    "840.d56db1b2.chunk.js.map": "/petlove/static/js/840.d56db1b2.chunk.js.map",
+    "908.3e5e59bf.chunk.js.map": "/petlove/static/js/908.3e5e59bf.chunk.js.map",
     "794.3192eefc.chunk.js.map": "/petlove/static/js/794.3192eefc.chunk.js.map",
-    "568.175868ae.chunk.js.map": "/petlove/static/js/568.175868ae.chunk.js.map"
+    "705.fb623ee1.chunk.js.map": "/petlove/static/js/705.fb623ee1.chunk.js.map",
+    "727.3fc6c789.chunk.js.map": "/petlove/static/js/727.3fc6c789.chunk.js.map",
+    "807.698f000a.chunk.js.map": "/petlove/static/js/807.698f000a.chunk.js.map",
+    "160.0176a4e4.chunk.js.map": "/petlove/static/js/160.0176a4e4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.922c3ecd.css",
-    "static/js/main.8e166492.js"
+    "static/js/main.eab258dd.js"
   ]
 }
