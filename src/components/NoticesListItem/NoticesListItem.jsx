@@ -17,6 +17,7 @@ import {
   FavoriteIcon,
 } from './NoticesListItem.styled';
 import { AnimalInfoModal } from 'components/AnimalInfoModal/AnimalInfoModal';
+import { AttentionModal } from 'components/AttentionModal/AttentionModal';
 
 export const NoticesListItem = ({ noticeInfo }) => {
   const { img, title, rating, name, birthday, sex, species, category, descr } =
