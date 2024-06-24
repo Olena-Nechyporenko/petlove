@@ -20,7 +20,6 @@ export const AuthList = styled.ul`
 `;
 
 export const AuthLinkLogin = styled(NavLink)`
-  font-family: var(--font-family);
   font-weight: 700;
   font-size: 16px;
   line-height: 1.25;

@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
   position: relative;
-  z-index: 1000;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 ${props => (props.ishomepage === 'true' ? '40px' : '20px')};
 
   @media screen and (min-width: 768px) {

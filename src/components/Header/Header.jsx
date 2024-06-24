@@ -10,6 +10,7 @@ import {
 } from './Header.styled';
 import { MobileMenu } from 'components/MobileMenu/MobileMenu';
 import { useState } from 'react';
+import { UserNav } from 'components/UserNav/UserNav';
 
 export const Header = ({ ishomepage }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,6 +21,8 @@ export const Header = ({ ishomepage }) => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  const isLoggedIn = true;
 
   return (
     <HeaderContainer ishomepage={ishomepage}>
@@ -39,7 +42,9 @@ export const Header = ({ ishomepage }) => {
           </li>
         </NavList>
       </Navigation>
-      <AuthNav />
+
+      {isLoggedIn ? <UserNav /> : <AuthNav />}
+
       <BurgerButton type="button" onClick={openMobileMenu}>
         {ishomepage === 'true' ? (
           <BurgerIcon
