@@ -16,6 +16,9 @@ import {
   InputWrapper,
 } from './RegisterForm.styled';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from 'redux/auth/operations';
+import { selectUser } from 'redux/auth/selectors';
 
 const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 
@@ -35,18 +38,36 @@ const validationSchema = Yup.object().shape({
     .min(7, 'Password must be at least 7 characters long.')
     .required('Password is a required field'),
   passwordConfirm: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .min(7, 'Password must be at least 7 characters long.')
     .required('Password is a required field'),
 });
 
 export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const dispatch = useDispatch();
+
+  const user = useSelector(selectUser);
+  console.log(user);
 
   const toggleHidePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const submitForm = () => {};
+  const toggleHidePasswordConfirm = () => {
+    setShowPasswordConfirm(!showPasswordConfirm);
+  };
+
+  const submitForm = (values, { resetForm }) => {
+    const userData = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+
+    dispatch(register(userData));
+  };
 
   return (
     <FormWrapper>
@@ -129,9 +150,12 @@ export const RegisterForm = () => {
                 <Input
                   name="passwordConfirm"
                   placeholder={'Confirm password'}
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPasswordConfirm ? 'text' : 'password'}
                 />
-                <PasswordHideBtn type="button" onClick={toggleHidePassword}>
+                <PasswordHideBtn
+                  type="button"
+                  onClick={toggleHidePasswordConfirm}
+                >
                   <PasswordIcon
                     width="18"
                     height="18"

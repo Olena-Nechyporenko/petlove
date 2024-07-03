@@ -112,6 +112,7 @@ export const InputAndButtonWrapp = styled.div`
 `;
 
 export const InputUrl = styled(Field)`
+  font-family: inherit;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
@@ -166,6 +167,7 @@ export const UploadPhotoButton = styled.button`
 `;
 
 export const Input = styled(Field)`
+  font-family: inherit;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.29;
@@ -198,6 +200,7 @@ export const Input = styled(Field)`
 `;
 
 export const SaveButton = styled.button`
+  font-family: inherit;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.29;

@@ -26,7 +26,7 @@ export const Modal = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    width: 480px;
+    width: 448px;
   }
 `;
 
@@ -38,7 +38,7 @@ export const ModalContainer = styled.div`
   padding: 40px 28px;
 
   @media screen and (min-width: 768px) {
-    padding: 50px;
+    padding: 80px;
   }
 `;
 
@@ -69,6 +69,11 @@ export const Title = styled.h2`
   letter-spacing: -0.03em;
   color: #262626;
   margin-bottom: 28px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+    line-height: 1.17;
+  }
 `;
 
 export const ButtonsWrapper = styled.div`
@@ -90,6 +95,12 @@ export const ApproveButton = styled.button`
   cursor: pointer;
   transition: all var(--main-transition);
 
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.25;
+    padding: 14px 57px;
+  }
+
   &:hover {
     background-color: #f9b020;
   }
@@ -108,6 +119,12 @@ export const CancelButton = styled.button`
   padding: 12px 44px;
   cursor: pointer;
   transition: all var(--main-transition);
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.25;
+    padding: 14px 44px;
+  }
 
   &:hover {
     background-color: rgba(38, 38, 38, 0.09);

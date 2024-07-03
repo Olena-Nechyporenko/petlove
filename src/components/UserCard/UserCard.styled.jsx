@@ -12,6 +12,7 @@ export const UserCardSection = styled.section`
 
   @media screen and (min-width: 1280px) {
     width: 520px;
+    height: 938px;
     box-sizing: border-box;
   }
 `;
