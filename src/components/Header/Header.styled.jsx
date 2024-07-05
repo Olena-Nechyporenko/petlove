@@ -5,7 +5,6 @@ export const HeaderContainer = styled.header`
   position: relative;
   z-index: 1000;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 ${props => (props.ishomepage === 'true' ? '40px' : '20px')};
 
@@ -23,7 +22,10 @@ export const LogoLink = styled(NavLink)`
   font-size: 20px;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: ${props => (props.ishomepage === 'true' ? '#fff' : '#262626')};
+  color: ${props =>
+    props.ishomepage === 'true'
+      ? 'var(--light-color)'
+      : 'var(--main-txt-color)'};
   display: flex;
   align-items: center;
   padding: 43px 0;
@@ -33,7 +35,7 @@ export const LogoLink = styled(NavLink)`
   }
 
   @media screen and (min-width: 1280px) {
-    margin-right: 313px;
+    margin-right: ${props => (props.ishomepage === 'true' ? '280px' : '313px')};
   }
 `;
 
@@ -57,8 +59,14 @@ export const Link = styled(NavLink)`
   font-size: 16px;
   line-height: 1.25;
   letter-spacing: -0.03em;
-  color: var(--main-txt-color);
-  border: 1px solid rgba(38, 38, 38, 0.15);
+  color: ${props =>
+    props.ishomepage === 'true'
+      ? 'var(--light-color)'
+      : 'var(--main-txt-color)'};
+  border: ${props =>
+    props.ishomepage === 'true'
+      ? '1px solid rgba(255, 255, 255, 0.4)'
+      : '1px solid rgba(38, 38, 38, 0.15)'};
   border-radius: 30px;
   padding: 15px 20px;
 
@@ -74,6 +82,7 @@ export const BurgerButton = styled.button`
   background-color: transparent;
   border: none;
   padding: 0;
+  margin-left: ${props => (props.ishomepage === 'true' ? 'auto' : '0')};
   cursor: pointer;
 
   @media screen and (min-width: 1280px) {

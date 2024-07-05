@@ -21,6 +21,7 @@ export const register = createAsyncThunk(
 
       return res.data;
     } catch (error) {
+      Notiflix.Notify.failure(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -28,9 +29,9 @@ export const register = createAsyncThunk(
 
 export const logIn = createAsyncThunk(
   'auth/login',
-  async (credentials, thunkAPI) => {
+  async (userData, thunkAPI) => {
     try {
-      const res = await axios.post('/auth/signin', credentials);
+      const res = await axios.post('/users/signin', userData);
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
@@ -42,40 +43,30 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/auth/logout');
+    await axios.post('/users/signout');
     clearAuthHeader();
   } catch (error) {
+    Notiflix.Notify.failure(error.response.data.message);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
 export const refreshUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
+  'auth/refreshUser',
+  async (_, { rejectWithValue, getState }) => {
+    const state = getState();
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
+      return rejectWithValue('Unable to fetch user');
     }
-
     try {
       setAuthHeader(persistedToken);
-      const res = await axios.get('/auth/current');
-      return res.data;
+      const refreshedUser = await axios.get('/users/current');
+      return refreshedUser.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-export const getCurrent = createAsyncThunk(
-  'auth/current',
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get('/auth/current');
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      Notiflix.Notify.failure(error.response.data.message);
+      return rejectWithValue(error.message);
     }
   }
 );

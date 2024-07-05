@@ -5,7 +5,7 @@ export const AuthList = styled.ul`
   display: none;
 
   @media screen and (min-width: 768px) {
-    display: flex;
+    display: ${props => (props.ishomepage === 'true' ? 'none' : 'flex')};
     justify-content: center;
     align-items: center;
     gap: 8px;
@@ -15,6 +15,7 @@ export const AuthList = styled.ul`
   }
 
   @media screen and (min-width: 1280px) {
+    display: flex;
     margin-right: 0;
   }
 `;
@@ -27,6 +28,10 @@ export const AuthLinkLogin = styled(NavLink)`
   text-transform: uppercase;
   color: var(--light-color);
   background-color: var(--accent-color);
+  border: ${props =>
+    props.ishomepage === 'true'
+      ? '1px solid rgba(255, 255, 255, 0.4)'
+      : 'none'};
   border-radius: 30px;
   padding: 15px 35px;
   transition: all var(--main-transition);

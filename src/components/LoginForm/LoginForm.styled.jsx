@@ -71,7 +71,7 @@ export const InputWrapper = styled.div`
   position: relative;
 `;
 
-export const Input = styled(Field)`
+export const Input = styled(({ hasError, ...props }) => <Field {...props} />)`
   font-family: inherit;
   font-weight: 500;
   font-size: 14px;
@@ -80,6 +80,7 @@ export const Input = styled(Field)`
   color: rgba(38, 38, 38, 0.8);
   border: 1px solid rgba(38, 38, 38, 0.15);
   border-radius: 30px;
+  outline: ${props => (props.hasError ? '1px solid #ef2447' : 'none')};
   padding: 0 12px;
   width: 100%;
   height: 42px;
@@ -103,6 +104,11 @@ export const Input = styled(Field)`
       font-size: 16px;
       line-height: 1.25;
     }
+  }
+
+  &:focus {
+    outline: ${props =>
+      props.hasError ? '1px solid #ef2447' : '1px solid var(--accent-color)'};
   }
 `;
 

@@ -11,9 +11,16 @@ import {
 import { MobileMenu } from 'components/MobileMenu/MobileMenu';
 import { useState } from 'react';
 import { UserNav } from 'components/UserNav/UserNav';
+import { useAuth } from 'hooks/useAuth';
+import { useLocation } from 'react-router-dom';
 
-export const Header = ({ ishomepage }) => {
+export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const { isLoggedIn } = useAuth();
+
+  const path = useLocation();
+  const ishomepage = (path.pathname === '/').toString();
 
   const openMobileMenu = () => {
     setIsMobileMenuOpen(true);
@@ -21,8 +28,6 @@ export const Header = ({ ishomepage }) => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
-
-  const isLoggedIn = true;
 
   return (
     <HeaderContainer ishomepage={ishomepage}>
@@ -32,20 +37,30 @@ export const Header = ({ ishomepage }) => {
       <Navigation>
         <NavList>
           <li>
-            <Link to="news">News</Link>
+            <Link to="news" ishomepage={ishomepage}>
+              News
+            </Link>
           </li>
           <li>
-            <Link to="notices">Find pet</Link>
+            <Link to="notices" ishomepage={ishomepage}>
+              Find pet
+            </Link>
           </li>
           <li>
-            <Link to="friends">Our friends</Link>
+            <Link to="friends" ishomepage={ishomepage}>
+              Our friends
+            </Link>
           </li>
         </NavList>
       </Navigation>
 
       {isLoggedIn ? <UserNav /> : <AuthNav />}
 
-      <BurgerButton type="button" onClick={openMobileMenu}>
+      <BurgerButton
+        type="button"
+        onClick={openMobileMenu}
+        ishomepage={ishomepage}
+      >
         {ishomepage === 'true' ? (
           <BurgerIcon
             width="32"
