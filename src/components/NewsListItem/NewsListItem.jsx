@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { ImgWrapper, Item } from './NewsListItem.styled';
 import {
   Img,
@@ -9,21 +10,18 @@ import {
 } from './NewsListItem.styled';
 
 export const NewsListItem = ({ newInfo }) => {
-  const { img, title, descr, date } = newInfo;
+  const { imgUrl, title, text, date, url } = newInfo;
+
   return (
     <Item>
       <ImgWrapper>
-        <Img src={img} alt={''} />
+        <Img src={imgUrl} alt={''} />
       </ImgWrapper>
-      <NewTitle>{title}</NewTitle>
-      <Description text={descr} length={120} />
+      <NewTitle text={title} length={60} />
+      <Description text={text} length={160} />
       <DateWrapper>
-        <Date>{date}</Date>
-        <ReadMoreLink
-          href="https://www.figma.com/design/UjTY410OFPsHzC6vHqUGQY/Petl%F0%9F%92%9Bve-(Copy)?node-id=0-1&t=8rStaa7UyGUTm26l-0"
-          target="_black"
-          rel="noopener noreferrer"
-        >
+        <Date>{format(date, 'dd/MM/yyyy')}</Date>
+        <ReadMoreLink href={url} target="_black" rel="noopener noreferrer">
           Read more
         </ReadMoreLink>
       </DateWrapper>

@@ -138,7 +138,7 @@ export const LoginForm = () => {
             <StyledButton type="submit">Log In</StyledButton>
             <RegisterLinkWrapper>
               Don't have an account?&nbsp;
-              <Link to="register">Register</Link>
+              <Link to="/register">Register</Link>
             </RegisterLinkWrapper>
           </StyledForm>
         )}

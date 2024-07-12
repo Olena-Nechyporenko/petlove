@@ -1,71 +1,23 @@
 import { NewsListItem } from 'components/NewsListItem/NewsListItem';
 import { List } from './NewList.styled';
-import img from '../../images/register-desk.jpg';
-
-const news = [
-  {
-    id: 1,
-    img: img,
-    title: 'When Helpless Fish Need a Hero, She Answers the Call',
-    descr:
-      'Three hundred goldfish in a hospital basement, a suckermouth at the airport: When fish are in crisis, a Bronx beautician and a partner in Pennsylvania ride to the rescue. ',
-    date: '15/03/2023',
-  },
-  {
-    id: 2,
-    img: img,
-    title: 'When Helpless Fish Need a Hero, She Answers the Call',
-    descr:
-      'Three hundred goldfish in a hospital basement, a suckermouth at the airport: When fish are in crisis, a Bronx beautician and a partner in Pennsylvania ride to the rescue. ',
-    date: '15/03/2023',
-  },
-  {
-    id: 3,
-    img: img,
-    title: 'When Helpless Fish Need a Hero, She Answers the Call',
-    descr:
-      'Three hundred goldfish in a hospital basement, a suckermouth at the airport: When fish are in crisis, a Bronx beautician and a partner in Pennsylvania ride to the rescue. ',
-    date: '15/03/2023',
-  },
-  {
-    id: 4,
-    img: img,
-    title: 'When Helpless Fish Need a Hero, She Answers the Call',
-    descr:
-      'Three hundred goldfish in a hospital basement, a suckermouth at the airport: When fish are in crisis, a Bronx beautician and a partner in Pennsylvania ride to the rescue. ',
-    date: '15/03/2023',
-  },
-  {
-    id: 5,
-    img: img,
-    title: 'When Helpless Fish Need a Hero, She Answers the Call',
-    descr:
-      'Three hundred goldfish in a hospital basement, a suckermouth at the airport: When fish are in crisis, a Bronx beautician and a partner in Pennsylvania ride to the rescue. ',
-    date: '15/03/2023',
-  },
-  {
-    id: 6,
-    img: img,
-    title: 'When Helpless Fish Need a Hero, She Answers the Call',
-    descr:
-      'Three hundred goldfish in a hospital basement, a suckermouth at the airport: When fish are in crisis, a Bronx beautician and a partner in Pennsylvania ride to the rescue. ',
-    date: '15/03/2023',
-  },
-  {
-    id: 7,
-    img: img,
-    title: 'When Helpless Fish Need a Hero, She Answers the Call',
-    descr:
-      'Three hundred goldfish in a hospital basement, a suckermouth at the airport: When fish are in crisis, a Bronx beautician and a partner in Pennsylvania ride to the rescue. ',
-    date: '15/03/2023',
-  },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllNews } from 'redux/news/operations';
+import { selectAllNews, selectKeyword } from 'redux/news/selectors';
 
 export const NewsList = () => {
+  const dispatch = useDispatch();
+  const news = useSelector(selectAllNews);
+  const keyword = useSelector(selectKeyword);
+
+  useEffect(() => {
+    dispatch(getAllNews(keyword));
+  }, [dispatch, keyword]);
+
   return (
     <List>
-      {news.map(newInfo => (
-        <NewsListItem key={newInfo.id} newInfo={newInfo} />
+      {news?.map(newInfo => (
+        <NewsListItem key={newInfo._id} newInfo={newInfo} />
       ))}
     </List>
   );

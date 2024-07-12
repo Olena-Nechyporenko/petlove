@@ -37,7 +37,8 @@ export const Img = styled.img`
   }
 `;
 
-export const NewTitle = styled.h2`
+export const NewTitle = styled(EllipsisText)`
+  display: block;
   font-weight: 700;
   font-size: 16px;
   line-height: 1.25;
@@ -48,6 +49,7 @@ export const NewTitle = styled.h2`
   @media screen and (min-width: 768px) {
     font-size: 20px;
     line-height: 1.3;
+    min-height: 52px;
     margin-bottom: 14px;
   }
 `;
@@ -64,6 +66,7 @@ export const Description = styled(EllipsisText)`
   @media screen and (min-width: 768px) {
     font-size: 16px;
     line-height: 1.25;
+    min-height: 80px;
     margin-bottom: 28px;
   }
 `;

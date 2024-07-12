@@ -10,6 +10,7 @@ export const List = styled.ul`
   @media screen and (min-width: 768px) {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
   }
 
   @media screen and (min-width: 1280px) {

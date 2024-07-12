@@ -19,7 +19,8 @@ export const Item = styled.li`
   }
 `;
 
-export const ImgWrapper = styled.div`
+export const ImgWrapper = styled.a`
+  display: block;
   border-radius: 100%;
   width: 80px;
   height: 80px;

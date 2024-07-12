@@ -48,13 +48,13 @@ export const SearchField = styled.input`
   border: 1px solid rgba(38, 38, 38, 0.15);
   border-radius: 30px;
   width: 100%;
-  padding: 12px 35px 12px 12px;
+  padding: 12px 55px 12px 12px;
   box-sizing: border-box;
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
     line-height: 1.25;
-    padding: 14px 35px 14px 14px;
+    padding: 14px 55px 14px 14px;
   }
 
   &::placeholder {
@@ -69,6 +69,34 @@ export const SearchField = styled.input`
       line-height: 1.25;
     }
   }
+
+  &:focus {
+    outline: 1px solid var(--accent-color);
+  }
+`;
+
+export const ClearButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 34px;
+  transform: translateY(-50%);
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    right: 36px;
+  }
+`;
+
+export const Icon = styled.svg`
+  width: 18px;
+  height: 18px;
 `;
 
 export const SearchButton = styled.button`

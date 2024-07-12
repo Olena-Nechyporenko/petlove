@@ -3,15 +3,28 @@ import {
   SearchBarWrapper,
   Title,
   InputWrapper,
+  ClearButton,
+  Icon,
   SearchField,
   SearchButton,
   SearchIcon,
 } from './SearchBar.styled';
+import { useDispatch } from 'react-redux';
+import { setKeyword } from 'redux/news/newsSlice';
 
 export const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
 
-  const handleSubmit = () => {};
+  const dispatch = useDispatch();
+
+  const handleClearSearch = () => {
+    setSearchText('');
+    dispatch(setKeyword(''));
+  };
+
+  const handleSubmit = () => {
+    dispatch(setKeyword(searchText));
+  };
 
   return (
     <SearchBarWrapper>
@@ -20,10 +33,29 @@ export const SearchBar = () => {
         <SearchField
           type="text"
           value={searchText}
-          onChange={e => setSearchText(e.currentTarget.value)}
+          onChange={e => setSearchText(e.target.value)}
           placeholder="Search"
         />
-        <SearchButton type="submit" onSubmit={handleSubmit}>
+        {searchText.trim().length > 0 && (
+          <ClearButton type="submit" onClick={handleClearSearch}>
+            <Icon
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.25 3.75L3.75 14.25M3.75003 3.75L14.25 14.25"
+                stroke="#262626"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </Icon>
+          </ClearButton>
+        )}
+        <SearchButton type="submit" onClick={handleSubmit}>
           <SearchIcon
             width="18"
             height="18"

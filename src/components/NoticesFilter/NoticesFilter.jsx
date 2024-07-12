@@ -46,8 +46,6 @@ export const NoticesFilter = () => {
   const [searchValue, setSearchValue] = useState('');
   const [valueChecked, setValueChecked] = useState(null);
   const [locationValue, setLocationValue] = useState('');
-  // console.log(valueChecked);
-  console.log(searchValue.trim().length);
 
   const handleValueChange = value => {
     setValueChecked(value);

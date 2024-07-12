@@ -1,3 +1,4 @@
+import { useAuth } from 'hooks/useAuth';
 import {
   CloseButton,
   CloseIcon,
@@ -11,9 +12,15 @@ import {
   AuthLinkLogin,
   AuthLinkRegister,
   BackDrop,
+  LogOutBtn,
 } from './MobileMenu.styled';
+import { useDispatch } from 'react-redux';
+import { logOut } from 'redux/auth/operations';
 
 export const MobileMenu = ({ onClose, ishomepage }) => {
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useAuth();
+
   const closeMobileMenu = () => {
     onClose(false);
   };
@@ -95,16 +102,26 @@ export const MobileMenu = ({ onClose, ishomepage }) => {
               </li>
             </MobileNavList>
           </Nav>
-          <AuthList>
-            <AuthItem>
-              <AuthLinkLogin to="login" ishomepage={ishomepage}>
-                Log In
-              </AuthLinkLogin>
-            </AuthItem>
-            <AuthItem>
-              <AuthLinkRegister to="register">Registration</AuthLinkRegister>
-            </AuthItem>
-          </AuthList>
+          {isLoggedIn ? (
+            <LogOutBtn
+              type="button"
+              onClick={() => dispatch(logOut())}
+              ishomepage={ishomepage}
+            >
+              Log out
+            </LogOutBtn>
+          ) : (
+            <AuthList>
+              <AuthItem>
+                <AuthLinkLogin to="login" ishomepage={ishomepage}>
+                  Log In
+                </AuthLinkLogin>
+              </AuthItem>
+              <AuthItem>
+                <AuthLinkRegister to="register">Registration</AuthLinkRegister>
+              </AuthItem>
+            </AuthList>
+          )}
         </Container>
       </Menu>
     </BackDrop>

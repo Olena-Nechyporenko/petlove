@@ -188,3 +188,26 @@ export const AuthLinkRegister = styled(NavLink)`
     width: 119px;
   }
 `;
+
+export const LogOutBtn = styled.button`
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  background-color: #fff4df;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 60px;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.25;
+    padding: 15px 0;
+    width: 170px;
+    margin: 0 auto;
+  }
+`;

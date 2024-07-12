@@ -29,6 +29,7 @@ export const LogoLink = styled(NavLink)`
   display: flex;
   align-items: center;
   padding: 43px 0;
+  margin-right: auto;
 
   @media screen and (min-width: 768px) {
     font-size: 28px;
@@ -82,7 +83,6 @@ export const BurgerButton = styled.button`
   background-color: transparent;
   border: none;
   padding: 0;
-  margin-left: ${props => (props.ishomepage === 'true' ? 'auto' : '0')};
   cursor: pointer;
 
   @media screen and (min-width: 1280px) {

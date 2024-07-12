@@ -10,28 +10,39 @@ import {
   DescrInfo,
 } from './FriendsListItem.styled';
 export const FriendsListItem = ({ friendInfo }) => {
-  const { img, name, email, address, phone, time } = friendInfo;
+  const { imageUrl, url, title, email, address, addressUrl, phone } =
+    friendInfo;
 
   return (
     <Item>
-      <ImgWrapper>
-        <Img src={img} alt={''} />
+      <ImgWrapper href={url} target="_blank" rel="noopener noreferrer">
+        <Img src={imageUrl} alt={''} />
       </ImgWrapper>
       <DescrInfoWrapper>
-        <Time>{time}</Time>
-        <Name>{name}</Name>
+        <Time>9:00 - 18.00</Time>
+        <Name>{title}</Name>
         <DescrList>
           <DescrItem>
             Email:
-            <DescrInfo text={email} length={23} />
+            <a
+              href={`mailto:${email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <DescrInfo text={email || 'not specified'} length={23} />
+            </a>
           </DescrItem>
           <DescrItem>
             Address:
-            <DescrInfo text={address} length={21} />
+            <a href={addressUrl} target="_blank" rel="noopener noreferrer">
+              <DescrInfo text={address || 'not specified'} length={21} />
+            </a>
           </DescrItem>
           <DescrItem>
             Phone:
-            <DescrInfo text={phone} length={23} />
+            <a href={`tel:${phone}`} target="_blank" rel="noopener noreferrer">
+              <DescrInfo text={phone || 'not specified'} length={23} />
+            </a>
           </DescrItem>
         </DescrList>
       </DescrInfoWrapper>

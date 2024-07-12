@@ -209,7 +209,7 @@ export const RegisterForm = () => {
             <StyledButton type="submit">Registration</StyledButton>
             <LoginLinkWrapper>
               Already have an account?&nbsp;
-              <Link to="login">Login</Link>
+              <Link to="/login">Login</Link>
             </LoginLinkWrapper>
           </StyledForm>
         )}
