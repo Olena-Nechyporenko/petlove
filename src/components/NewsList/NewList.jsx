@@ -1,24 +1,82 @@
 import { NewsListItem } from 'components/NewsListItem/NewsListItem';
-import { List } from './NewList.styled';
+import { List, PaginationContainer } from './NewList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getAllNews } from 'redux/news/operations';
-import { selectAllNews, selectKeyword } from 'redux/news/selectors';
+import {
+  selectAllNews,
+  selectKeyword,
+  selectKTotalPages,
+} from 'redux/news/selectors';
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
 
 export const NewsList = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
   const news = useSelector(selectAllNews);
+  const totalPages = useSelector(selectKTotalPages);
   const keyword = useSelector(selectKeyword);
 
   useEffect(() => {
-    dispatch(getAllNews(keyword));
-  }, [dispatch, keyword]);
+    dispatch(getAllNews({ keyword, currentPage }));
+  }, [dispatch, keyword, currentPage]);
+
+  const handleChangePage = (event, page) => {
+    setCurrentPage(page);
+  };
 
   return (
-    <List>
-      {news?.map(newInfo => (
-        <NewsListItem key={newInfo._id} newInfo={newInfo} />
-      ))}
-    </List>
+    <>
+      <List>
+        {news?.map(newInfo => (
+          <NewsListItem key={newInfo._id} newInfo={newInfo} />
+        ))}
+      </List>
+
+      {totalPages > 1 && (
+        <PaginationContainer>
+          <Pagination
+            count={totalPages}
+            color="primary"
+            variant="outlined"
+            showFirstButton
+            showLastButton
+            onChange={handleChangePage}
+            renderItem={item => (
+              <PaginationItem
+                {...item}
+                sx={{
+                  fontFamily: 'inherit',
+                  fontWeight: '700',
+                  fontSize: '18px',
+                  lineHeight: '1.2',
+                  backgroundColor: '#fff',
+                  color: '#262626',
+                  borderRadius: '100%',
+                  width: '44px',
+                  height: '44px',
+
+                  '&.Mui-selected': {
+                    fontFamily: 'inherit',
+                    fontWeight: '700',
+                    fontSize: '18px',
+                    lineHeight: '1.2',
+                    backgroundColor: '#f6b83d',
+                    color: '#fff',
+                    borderRadius: '100%',
+                    width: '44px',
+                    height: '44px',
+                    '&:hover': {
+                      backgroundColor: '#fff',
+                    },
+                  },
+                }}
+              />
+            )}
+          />
+        </PaginationContainer>
+      )}
+    </>
   );
 };

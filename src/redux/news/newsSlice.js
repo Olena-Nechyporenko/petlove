@@ -3,6 +3,7 @@ import { getAllNews } from './operations';
 
 const initialState = {
   news: [],
+  totalPages: 1,
   keyword: null,
   isLoading: false,
 };
@@ -23,6 +24,7 @@ const newsSlice = createSlice({
       .addCase(getAllNews.fulfilled, (state, action) => {
         state.isLoading = false;
         state.news = action.payload.results;
+        state.totalPages = action.payload.totalPages;
       })
       .addCase(getAllNews.rejected, (state, action) => {
         state.isLoading = false;
