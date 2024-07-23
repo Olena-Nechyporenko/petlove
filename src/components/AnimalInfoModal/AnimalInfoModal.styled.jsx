@@ -52,12 +52,15 @@ export const CloseIcon = styled.svg`
   cursor: pointer;
 `;
 
-export const ImgWrapper = styled.div`
+export const ImgAndSpeciesWrapper = styled.div`
   position: relative;
+`;
+
+export const ImgWrapper = styled.div`
   border-radius: 100px;
   width: 120px;
   height: 120px;
-  /* overflow: hidden; */
+  overflow: hidden;
   margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
@@ -122,18 +125,6 @@ export const RatingWrapper = styled.div`
     margin-bottom: 20px;
   }
 `;
-
-export const IconList = styled.ul`
-  display: flex;
-  gap: 4px;
-`;
-
-export const StarIcon = styled(FaStar)`
-  width: 16px;
-  height: 16px;
-  fill: #ffc531;
-`;
-
 export const Rating = styled.span`
   font-weight: 500;
   font-size: 14px;
@@ -143,7 +134,6 @@ export const Rating = styled.span`
 
 export const DescriptionList = styled.ul`
   display: flex;
-  align-items: center;
   gap: 27px;
   margin-bottom: 18px;
 `;
@@ -165,6 +155,7 @@ export const DescrInfo = styled.span`
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: -0.02em;
+  text-transform: capitalize;
   color: var(--main-txt-color);
 `;
 
@@ -173,6 +164,7 @@ export const Text = styled.p`
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.02em;
+  text-align: center;
   color: #2b2b2a;
   margin-bottom: 40px;
 `;

@@ -6,7 +6,7 @@ import { getAllNews } from 'redux/news/operations';
 import {
   selectAllNews,
   selectKeyword,
-  selectKTotalPages,
+  selectTotalPages,
 } from 'redux/news/selectors';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
@@ -15,7 +15,7 @@ export const NewsList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
   const news = useSelector(selectAllNews);
-  const totalPages = useSelector(selectKTotalPages);
+  const totalPages = useSelector(selectTotalPages);
   const keyword = useSelector(selectKeyword);
 
   useEffect(() => {
@@ -40,6 +40,8 @@ export const NewsList = () => {
             count={totalPages}
             color="primary"
             variant="outlined"
+            boundaryCount={0}
+            siblingCount={1}
             showFirstButton
             showLastButton
             onChange={handleChangePage}
@@ -49,26 +51,45 @@ export const NewsList = () => {
                 sx={{
                   fontFamily: 'inherit',
                   fontWeight: '700',
-                  fontSize: '18px',
-                  lineHeight: '1.2',
+                  fontSize: '14px',
+                  lineHeight: '1.29',
                   backgroundColor: '#fff',
                   color: '#262626',
                   borderRadius: '100%',
-                  width: '44px',
-                  height: '44px',
+                  width: '40px',
+                  height: '40px',
+                  '&:hover': {
+                    backgroundColor: '#f6b83d',
+                    color: '#fff',
+                  },
+
+                  '@media screen and (min-width: 768px)': {
+                    fontSize: '18px',
+                    lineHeight: '1.2',
+                    width: '44px',
+                    height: '44px',
+                  },
 
                   '&.Mui-selected': {
                     fontFamily: 'inherit',
                     fontWeight: '700',
-                    fontSize: '18px',
-                    lineHeight: '1.2',
+                    fontSize: '14px',
+                    lineHeight: '1.29',
                     backgroundColor: '#f6b83d',
                     color: '#fff',
                     borderRadius: '100%',
-                    width: '44px',
-                    height: '44px',
+                    width: '40px',
+                    height: '40px',
                     '&:hover': {
-                      backgroundColor: '#fff',
+                      backgroundColor: '#f6b83d',
+                      color: '#fff',
+                    },
+
+                    '@media screen and (min-width: 768px)': {
+                      fontSize: '18px',
+                      lineHeight: '1.2',
+                      width: '44px',
+                      height: '44px',
                     },
                   },
                 }}

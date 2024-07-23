@@ -125,7 +125,7 @@ export const CategoryGenderLabel = styled.label`
   }
 
   @media screen and (min-width: 1280px) {
-    width: 190px;
+    width: 250px;
   }
 `;
 
@@ -169,6 +169,7 @@ export const customDropDownStyles = {
     fontSize: '14px',
     lineHeight: '1.29',
     letterSpacing: '-0.03em',
+    textTransform: 'capitalize',
     cursor: 'pointer',
 
     '@media (min-width: 768px)': {
@@ -207,6 +208,7 @@ export const customDropDownStyles = {
     fontSize: '14px',
     fontWeight: '500',
     lineHeight: '1.29',
+    textTransform: 'capitalize',
     color: '#262626',
 
     '@media (min-width: 768px)': {
@@ -222,6 +224,10 @@ export const TypeLabel = styled.label`
   @media screen and (min-width: 768px) {
     width: 190px;
   }
+
+  @media screen and (min-width: 1280px) {
+    width: 250px;
+  }
 `;
 
 export const customDropDownStylesForType = {
@@ -231,15 +237,6 @@ export const customDropDownStylesForType = {
     width: '100%',
   }),
 };
-
-export const LocationLabel = styled.label`
-  position: relative;
-  width: 100%;
-
-  @media screen and (min-width: 768px) {
-    width: 227px;
-  }
-`;
 
 // Line
 
@@ -259,30 +256,6 @@ export const UnderLineContainer = styled.div`
     gap: 8px;
   }
 `;
-
-// export const RadioLabel = styled.label`
-//   font-weight: 500;
-//   font-size: 14px;
-//   line-height: 1.29;
-//   letter-spacing: -0.03em;
-//   color: var(--main-txt-color);
-//   display: flex;
-//   align-items: center;
-//   padding: 12px;
-//   border-radius: 30px;
-//   cursor: pointer;
-//   transition: background-color 0.3s;
-//   background-color: ${props => (props.checked ? '#f6b83d' : '#fff')};
-// `;
-
-// export const RadioButton = styled(Field)`
-//   width: 20px;
-//   height: 20px;
-
-//   &:checked + ${RadioLabel} {
-//     background-color: #f6b83d;
-//   }
-// `;
 
 // Sorting buttons
 

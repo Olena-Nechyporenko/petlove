@@ -1,15 +1,16 @@
+import { useEffect } from 'react';
+import ReactStars from 'react-rating-stars-component';
 import {
   BackDrop,
   Modal,
   ModalContainer,
   CloseIcon,
+  ImgAndSpeciesWrapper,
   ImgWrapper,
   Img,
   Category,
   Title,
   RatingWrapper,
-  IconList,
-  StarIcon,
   Rating,
   DescriptionList,
   DescrItem,
@@ -20,10 +21,19 @@ import {
   FavoriteIcon,
   ContactBtn,
 } from './AnimalInfoModal.styled';
-import img from '../../images/cat-info-box.png';
-import { useEffect } from 'react';
 
-export const AnimalInfoModal = ({ onClose }) => {
+export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
+  const { imgURL, title, popularity, name, sex, species, category, comment } =
+    animalInfo;
+
+  const normalizedRating = rating => {
+    const minRating = 3;
+    const maxRating = 273;
+    const normalizedRating =
+      ((rating - minRating) / (maxRating - minRating)) * 5;
+    return normalizedRating;
+  };
+
   useEffect(() => {
     const handleCloseOnKeydown = e => {
       if (e.key === 'Escape') {
@@ -71,56 +81,49 @@ export const AnimalInfoModal = ({ onClose }) => {
             />
           </CloseIcon>
 
-          <ImgWrapper>
-            <Img src={img} alt="" />
-            <Category>Sell</Category>
-          </ImgWrapper>
+          <ImgAndSpeciesWrapper>
+            <ImgWrapper>
+              <Img src={imgURL} alt="" />
+            </ImgWrapper>
+            <Category>{category}</Category>
+          </ImgAndSpeciesWrapper>
 
-          <Title>Golden Retriever Puppies</Title>
+          <Title>{title}</Title>
           <RatingWrapper>
-            <IconList>
-              <li>
-                <StarIcon />
-              </li>
-              <li>
-                <StarIcon />
-              </li>
-              <li>
-                <StarIcon />
-              </li>
-              <li>
-                <StarIcon />
-              </li>
-              <li>
-                <StarIcon />
-              </li>
-            </IconList>
-            <Rating>1</Rating>
+            <ReactStars
+              count={5}
+              value={normalizedRating(popularity)}
+              size={20}
+              isHalf={true}
+              activeColor="#ffc531"
+              color="rgba(38, 38, 38, 0.05)"
+            />
+            <Rating>{popularity}</Rating>
           </RatingWrapper>
 
           <DescriptionList>
             <DescrItem>
               Name
-              <DescrInfo>Daisy</DescrInfo>
+              <DescrInfo>{name}</DescrInfo>
             </DescrItem>
 
             <DescrItem>
               Birthday
-              <DescrInfo>12.08.2024</DescrInfo>
+              <DescrInfo>{birthday() || 'Unknown'}</DescrInfo>
             </DescrItem>
 
             <DescrItem>
               Sex
-              <DescrInfo>Female</DescrInfo>
+              <DescrInfo>{sex}</DescrInfo>
             </DescrItem>
 
             <DescrItem>
               Species
-              <DescrInfo>Dog</DescrInfo>
+              <DescrInfo>{species}</DescrInfo>
             </DescrItem>
           </DescriptionList>
 
-          <Text>Adorable puppy looking for a loving home.</Text>
+          <Text>{comment}</Text>
 
           <ButtonsWrapper>
             <AddToFavoriteBtn type="button">

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { parseISO, format } from 'date-fns';
 import {
   Item,
   ImgWrapper,
@@ -17,13 +18,29 @@ import {
   FavoriteIcon,
 } from './NoticesListItem.styled';
 import { AnimalInfoModal } from 'components/AnimalInfoModal/AnimalInfoModal';
-import { AttentionModal } from 'components/AttentionModal/AttentionModal';
+// import { AttentionModal } from 'components/AttentionModal/AttentionModal';
 
 export const NoticesListItem = ({ noticeInfo }) => {
-  const { img, title, rating, name, birthday, sex, species, category, descr } =
-    noticeInfo;
+  const {
+    imgURL,
+    title,
+    popularity,
+    name,
+    birthday,
+    sex,
+    species,
+    category,
+    comment,
+  } = noticeInfo;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const formatedDate = () => {
+    if (birthday) {
+      const date = parseISO(birthday);
+      return format(date, 'dd.MM.yyyy');
+    }
+  };
 
   const handleToggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -33,13 +50,13 @@ export const NoticesListItem = ({ noticeInfo }) => {
     <>
       <Item>
         <ImgWrapper>
-          <Img src={img} alt="" />
+          <Img src={imgURL} alt="" />
         </ImgWrapper>
         <TitleRatingWrapper>
           <Title>{title}</Title>
           <Rating>
             <RatingIcon />
-            {rating}
+            {popularity}
           </Rating>
         </TitleRatingWrapper>
         <DescriptionList>
@@ -50,7 +67,7 @@ export const NoticesListItem = ({ noticeInfo }) => {
 
           <DescrItem>
             Birthday
-            <DescrInfo>{birthday}</DescrInfo>
+            <DescrInfo>{formatedDate() || 'Unknown'}</DescrInfo>
           </DescrItem>
 
           <DescrItem>
@@ -69,7 +86,7 @@ export const NoticesListItem = ({ noticeInfo }) => {
           </DescrItem>
         </DescriptionList>
 
-        <Text>{descr}</Text>
+        <Text>{comment}</Text>
 
         <ButtonsWrapper>
           <LearnMoreButton type="button" onClick={handleToggleModal}>
@@ -95,7 +112,13 @@ export const NoticesListItem = ({ noticeInfo }) => {
           </FavoriteButton>
         </ButtonsWrapper>
       </Item>
-      {isModalOpen && <AnimalInfoModal onClose={handleToggleModal} />}
+      {isModalOpen && (
+        <AnimalInfoModal
+          animalInfo={noticeInfo}
+          birthday={formatedDate}
+          onClose={handleToggleModal}
+        />
+      )}
     </>
   );
 };

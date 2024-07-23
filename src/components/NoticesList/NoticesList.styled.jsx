@@ -15,6 +15,16 @@ export const List = styled.ul`
 
   @media screen and (min-width: 1280px) {
     gap: 40px 32px;
-    padding: 40px 32px 60px;
+    padding: 40px 32px 0;
+  }
+`;
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 44px 0 80px;
+
+  @media screen and (min-width: 768px) {
+    padding: 60px 0 80px;
   }
 `;

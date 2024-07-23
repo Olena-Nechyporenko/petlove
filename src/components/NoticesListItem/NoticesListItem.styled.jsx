@@ -6,6 +6,8 @@ export const Item = styled.li`
   border-radius: 16px;
   padding: 24px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 
   @media screen and (min-width: 768px) {
     flex-basis: calc((100% - 20px) / 2);
@@ -68,7 +70,7 @@ export const RatingIcon = styled(FaStar)`
 
 export const DescriptionList = styled.ul`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
   margin-bottom: 16px;
 
@@ -93,11 +95,14 @@ export const DescrItem = styled.li`
 `;
 
 export const DescrInfo = styled.span`
+  display: inline-block;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: -0.02em;
   color: var(--main-txt-color);
+  text-transform: capitalize;
+  min-height: 30px;
 `;
 
 export const Text = styled.p`
@@ -120,6 +125,7 @@ export const Text = styled.p`
 export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 10px;
+  margin-top: auto;
 `;
 
 export const LearnMoreButton = styled.button`
