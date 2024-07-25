@@ -14,6 +14,7 @@ import { authReducer } from './auth/authSlice';
 import { newsReducer } from './news/newsSlice';
 import { friendsReducer } from './friends/friendsSlice';
 import { noticesReducer } from './notices/noticesSlice';
+import { favoritesReducer } from './favorites/favoritesSlice';
 
 const authPersist = {
   key: 'auth',
@@ -27,6 +28,7 @@ export const store = configureStore({
     news: newsReducer,
     friends: friendsReducer,
     notices: noticesReducer,
+    favorites: favoritesReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa6';
+import { IoIosHeartEmpty } from 'react-icons/io';
+import { IoMdHeart } from 'react-icons/io';
 
 export const Item = styled.li`
   background: var(--light-color);
@@ -166,7 +168,14 @@ export const FavoriteButton = styled.button`
   cursor: pointer;
 `;
 
-export const FavoriteIcon = styled.svg`
-  width: 18px;
-  height: 18px;
+export const EmptyHeartIcon = styled(IoIosHeartEmpty)`
+  fill: var(--accent-color);
+  width: 20px;
+  height: 20px;
+`;
+
+export const FillHeartIcon = styled(IoMdHeart)`
+  fill: var(--accent-color);
+  width: 20px;
+  height: 20px;
 `;

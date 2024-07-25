@@ -4,18 +4,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredNotices, selectFilters } from 'redux/notices/selectors';
 import { useEffect } from 'react';
 import { getAllNotices } from 'redux/notices/operations';
+import { getFavorites } from 'redux/favorites/operations';
+import { selectFavorites } from 'redux/favorites/selectors';
 
 export const NoticesList = () => {
   const dispatch = useDispatch();
   // const allNotices = useSelector(selectAllNotices);
   const { keyword } = useSelector(selectFilters);
   const filteredNotices = useSelector(selectFilteredNotices);
-
-  console.log(filteredNotices);
+  const favorites = useSelector(selectFavorites);
 
   useEffect(() => {
     dispatch(getAllNotices({ keyword }));
-  }, [dispatch, keyword]);
+    dispatch(getFavorites());
+  }, [dispatch, keyword, favorites]);
 
   return (
     <>

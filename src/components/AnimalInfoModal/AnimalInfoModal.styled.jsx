@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { FaStar } from 'react-icons/fa6';
+import { IoIosHeartEmpty } from 'react-icons/io';
+import { IoMdHeart } from 'react-icons/io';
 
 export const BackDrop = styled.div`
   position: fixed;
@@ -172,10 +173,14 @@ export const Text = styled.p`
 export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 10px;
+  width: 100%;
 `;
 
-export const AddToFavoriteBtn = styled.button`
+export const FavoriteBtn = styled.button`
+  flex: 1;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 8px;
   font-family: inherit;
   font-weight: 500;
@@ -186,7 +191,7 @@ export const AddToFavoriteBtn = styled.button`
   background: var(--accent-color);
   border: none;
   border-radius: 30px;
-  padding: 12px 31px;
+  padding: 12px 0;
   cursor: pointer;
   transition: all var(--main-transition);
 
@@ -195,16 +200,27 @@ export const AddToFavoriteBtn = styled.button`
   }
 
   @media screen and (min-width: 768px) {
-    padding: 14px 43px;
+    padding: 14px 0;
   }
 `;
 
-export const FavoriteIcon = styled.svg`
+export const EmptyHeartIcon = styled(IoIosHeartEmpty)`
+  fill: #fff;
   width: 18px;
   height: 18px;
 `;
 
-export const ContactBtn = styled.button`
+export const FillHeartIcon = styled(IoMdHeart)`
+  fill: #fff;
+  width: 18px;
+  height: 18px;
+`;
+
+export const ContactBtn = styled.a`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: inherit;
   font-weight: 500;
   font-size: 16px;
@@ -214,7 +230,7 @@ export const ContactBtn = styled.button`
   background-color: #fff4df;
   border: none;
   border-radius: 30px;
-  padding: 12px 37px;
+  padding: 12px 0;
   cursor: pointer;
   transition: all var(--main-transition);
 
@@ -223,6 +239,6 @@ export const ContactBtn = styled.button`
   }
 
   @media screen and (min-width: 768px) {
-    padding: 14px 50px;
+    padding: 14px 0;
   }
 `;
