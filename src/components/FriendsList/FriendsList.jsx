@@ -8,7 +8,6 @@ import { getAllFriends } from 'redux/friends/operations';
 export const FriendsList = () => {
   const dispatch = useDispatch();
   const friends = useSelector(selectAllFriends);
-  console.log(friends);
 
   useEffect(() => {
     dispatch(getAllFriends());

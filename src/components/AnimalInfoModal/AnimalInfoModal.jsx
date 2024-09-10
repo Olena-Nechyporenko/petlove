@@ -24,7 +24,11 @@ import {
 } from './AnimalInfoModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFavorites } from 'redux/favorites/selectors';
-import { addFavorites, removeFavorites } from 'redux/favorites/operations';
+import {
+  addFavorites,
+  getFavorites,
+  removeFavorites,
+} from 'redux/favorites/operations';
 
 export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
   const {
@@ -39,7 +43,6 @@ export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
     comment,
   } = animalInfo;
   const favorites = useSelector(selectFavorites);
-
   const dispatch = useDispatch();
 
   const isInFavorites = favorites.some(favPet => favPet._id === _id);
@@ -69,6 +72,16 @@ export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
+  };
+
+  const handleRemoveFavorites = async id => {
+    await dispatch(removeFavorites(id));
+    dispatch(getFavorites());
+  };
+
+  const handleAddFavorites = async id => {
+    await dispatch(addFavorites(id));
+    dispatch(getFavorites());
   };
 
   return (
@@ -147,7 +160,7 @@ export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
             {isInFavorites ? (
               <FavoriteBtn
                 type="button"
-                onClick={() => dispatch(removeFavorites(_id))}
+                onClick={() => handleRemoveFavorites(_id)}
               >
                 Remove from
                 <FillHeartIcon />
@@ -155,7 +168,7 @@ export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
             ) : (
               <FavoriteBtn
                 type="button"
-                onClick={() => dispatch(addFavorites(_id))}
+                onClick={() => handleAddFavorites(_id)}
               >
                 Add to
                 <EmptyHeartIcon />

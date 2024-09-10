@@ -15,11 +15,24 @@ import { newsReducer } from './news/newsSlice';
 import { friendsReducer } from './friends/friendsSlice';
 import { noticesReducer } from './notices/noticesSlice';
 import { favoritesReducer } from './favorites/favoritesSlice';
+import { userProfileReducer } from './userProfile/userProfileSlice';
 
 const authPersist = {
   key: 'auth',
   storage,
   whitelist: ['token'],
+};
+
+const favoritesPersist = {
+  key: 'favorites',
+  storage,
+  whitelist: ['viewedNotices'],
+};
+
+const userAvatarPersist = {
+  key: 'userProfile',
+  storage,
+  whitelist: ['userAvatar'],
 };
 
 export const store = configureStore({
@@ -28,7 +41,8 @@ export const store = configureStore({
     news: newsReducer,
     friends: friendsReducer,
     notices: noticesReducer,
-    favorites: favoritesReducer,
+    favorites: persistReducer(favoritesPersist, favoritesReducer),
+    userProfile: persistReducer(userAvatarPersist, userProfileReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

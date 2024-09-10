@@ -3,12 +3,29 @@ import { getFavorites } from './operations';
 
 const initialState = {
   favorites: [],
+  viewedNotices: [],
   isLoading: false,
 };
 
 const favoritesSlice = createSlice({
   name: 'favorites',
   initialState,
+  reducers: {
+    setViewedNotices(state, action) {
+      const exists = state.viewedNotices.some(
+        notice => notice._id === action.payload._id
+      );
+      if (!exists) {
+        state.viewedNotices.push(action.payload);
+      }
+    },
+    removeViewedNotices(state, action) {
+      const updatedViewed = state.viewedNotices.filter(
+        notice => notice._id !== action.payload._id
+      );
+      state.viewedNotices = updatedViewed;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getFavorites.pending, (state, action) => {
@@ -23,5 +40,7 @@ const favoritesSlice = createSlice({
       });
   },
 });
+
+export const { setViewedNotices, removeViewedNotices } = favoritesSlice.actions;
 
 export const favoritesReducer = favoritesSlice.reducer;

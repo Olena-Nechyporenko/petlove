@@ -10,14 +10,20 @@ import {
   Img,
   StyledForm,
   InputAndButtonWrapp,
-  InputUrl,
-  ErrorWrapper,
   UploadPhotoButton,
   Input,
   SaveButton,
+  ErrorWrapper,
 } from './EditUserModal.styled';
-import img from '../../images/dog-info-box.png';
-import { Formik, Form, ErrorMessage } from 'formik';
+import img from '../../images/icon.jpg';
+import { Formik, ErrorMessage } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectFullUserInfo,
+  selectUserAvatar,
+} from 'redux/userProfile/selectors';
+import { editUserInfo } from 'redux/userProfile/operations';
+import { setAvatar } from 'redux/userProfile/userProfileSlice';
 
 const regex = {
   urlRegex: /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
@@ -33,10 +39,15 @@ const validationSchema = Yup.object().shape({
     .required('Email is a required field'),
   phone: Yup.string()
     .matches(regex.phoneRegex, 'Invalid phone number format')
-    .required('Password is a required field'),
+    .required('Phone is a required field'),
 });
 
 export const EditUserModal = ({ onClose }) => {
+  const userInfo = useSelector(selectFullUserInfo);
+  const userAvatar = useSelector(selectUserAvatar);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const handleCloseOnKeydown = e => {
       if (e.key === 'Escape') {
@@ -55,6 +66,39 @@ export const EditUserModal = ({ onClose }) => {
       onClose();
     }
   };
+
+  const handleFileChange = async e => {
+    const { type, files } = e.target;
+
+    if (type === 'file') {
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        if (fileReader.readyState === 2) {
+          dispatch(setAvatar(fileReader.result));
+        }
+      };
+      if (files[0]) {
+        fileReader.readAsDataURL(files[0]);
+      }
+    }
+  };
+
+  const triggerFileInput = () => {
+    document.getElementById('fileInput').click();
+  };
+
+  const handleSubmit = values => {
+    const userData = {
+      name: values.name,
+      email: values.email,
+      phone: values.phone,
+      avatar:
+        'https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331258_1280.pnghttps://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+    };
+
+    dispatch(editUserInfo(userData));
+  };
+
   return (
     <BackDrop onClick={handleCloseOnBackdrop}>
       <Modal>
@@ -84,29 +128,23 @@ export const EditUserModal = ({ onClose }) => {
           </CloseIcon>
           <Title>Edit information</Title>
           <ImgWrapper>
-            <Img src={img} alt="" />
+            <Img src={userAvatar || img} alt="" />
           </ImgWrapper>
 
           <Formik
-          //   initialValues={initialValues}
-          //   validationSchema={validationSchema}
-          //   onSubmit={submitForm}
+            initialValues={{
+              avatar: userInfo.avatar,
+              name: userInfo.name,
+              email: userInfo.email,
+              phone: userInfo.phone,
+            }}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
           >
-            <Form>
+            {({ errors, touched }) => (
               <StyledForm>
                 <InputAndButtonWrapp>
-                  <label>
-                    <InputUrl
-                      type="url"
-                      name="avatar"
-                      value="https//sljbckhsvavcjavcgavdhag"
-                    />
-                    <ErrorWrapper>
-                      <ErrorMessage name="avatar" />
-                    </ErrorWrapper>
-                  </label>
-
-                  <UploadPhotoButton>
+                  <UploadPhotoButton type="button" onClick={triggerFileInput}>
                     Upload photo
                     <svg
                       width="18"
@@ -145,13 +183,20 @@ export const EditUserModal = ({ onClose }) => {
                       />
                     </svg>
                   </UploadPhotoButton>
+                  <input
+                    type="file"
+                    id="fileInput"
+                    style={{ display: 'none' }}
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
                 </InputAndButtonWrapp>
                 <label>
                   <Input
                     type="text"
                     name="name"
                     placeholder={'Name'}
-                    value={'Anna'}
+                    hasError={errors.name && touched.name}
                   />
                   <ErrorWrapper>
                     <ErrorMessage name="name" />
@@ -162,7 +207,7 @@ export const EditUserModal = ({ onClose }) => {
                     type="email"
                     name="email"
                     placeholder={'Email'}
-                    value={'anna@gmail.com'}
+                    hasError={errors.email && touched.email}
                   />
                   <ErrorWrapper>
                     <ErrorMessage name="email" />
@@ -172,16 +217,16 @@ export const EditUserModal = ({ onClose }) => {
                   <Input
                     type="text"
                     name="phone"
-                    placeholder={'Phone number'}
-                    value={'+38097687564'}
+                    placeholder={'+380XXXXXXXXX'}
+                    hasError={errors.phone && touched.phone}
                   />
                   <ErrorWrapper>
                     <ErrorMessage name="phone" />
                   </ErrorWrapper>
                 </label>
+                <SaveButton type="submit">Save</SaveButton>
               </StyledForm>
-              <SaveButton type="submit">Save</SaveButton>
-            </Form>
+            )}
           </Formik>
         </ModalContainer>
       </Modal>

@@ -22,8 +22,13 @@ import { AnimalInfoModal } from 'components/AnimalInfoModal/AnimalInfoModal';
 import { useAuth } from 'hooks/useAuth';
 import { AttentionModal } from 'components/AttentionModal/AttentionModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFavorites, removeFavorites } from 'redux/favorites/operations';
+import {
+  addFavorites,
+  getFavorites,
+  removeFavorites,
+} from 'redux/favorites/operations';
 import { selectFavorites } from 'redux/favorites/selectors';
+import { setViewedNotices } from 'redux/favorites/favoritesSlice';
 
 export const NoticesListItem = ({ noticeInfo }) => {
   const {
@@ -46,11 +51,13 @@ export const NoticesListItem = ({ noticeInfo }) => {
 
   const isInFavorites = favorites.some(favPet => favPet._id === _id);
 
-  const handleAddFavorites = id => {
+  const handleAddFavorites = async id => {
     if (!isInFavorites) {
-      dispatch(addFavorites(id));
+      await dispatch(addFavorites(id));
+      dispatch(getFavorites());
     } else {
-      dispatch(removeFavorites(id));
+      await dispatch(removeFavorites(id));
+      dispatch(getFavorites());
     }
   };
 
@@ -63,6 +70,10 @@ export const NoticesListItem = ({ noticeInfo }) => {
 
   const handleToggleModal = () => {
     setIsModalOpen(!isModalOpen);
+
+    if (isModalOpen) {
+      dispatch(setViewedNotices(noticeInfo));
+    }
   };
 
   return (

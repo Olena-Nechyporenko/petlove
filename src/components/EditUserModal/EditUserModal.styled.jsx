@@ -1,4 +1,4 @@
-import { Field } from 'formik';
+import { Form, Field } from 'formik';
 import styled from 'styled-components';
 
 export const BackDrop = styled.div`
@@ -89,7 +89,7 @@ export const Img = styled.img`
   }
 `;
 
-export const StyledForm = styled.div`
+export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -104,37 +104,47 @@ export const StyledForm = styled.div`
 export const InputAndButtonWrapp = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 6px;
   }
-`;
 
-export const InputUrl = styled(Field)`
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-  letter-spacing: -0.02em;
-  color: #262626;
-  border: 1px solid #f6b83d;
-  border-radius: 30px;
-  width: 161px;
-  box-sizing: border-box;
-  padding: 12px;
-
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.29;
-    width: 226px;
+  label {
+    position: relative;
   }
 `;
 
-export const ErrorWrapper = styled.span``;
+// export const InputUrl = styled(({ hasError, ...props }) => (
+//   <Field {...props} />
+// ))`
+//   font-family: inherit;
+//   font-weight: 500;
+//   font-size: 12px;
+//   line-height: 1.33;
+//   letter-spacing: -0.02em;
+//   color: #262626;
+//   border: 1px solid #f6b83d;
+//   border-radius: 30px;
+//   outline: ${props => (props.hasError ? '1px solid #ef2447' : 'none')};
+//   width: 161px;
+//   box-sizing: border-box;
+//   padding: 12px;
+
+//   @media screen and (min-width: 768px) {
+//     font-size: 14px;
+//     line-height: 1.29;
+//     width: 226px;
+//   }
+
+//   &:focus {
+//     outline: ${props =>
+//       props.hasError ? '1px solid #ef2447' : '1px solid var(--accent-color)'};
+//   }
+// `;
 
 export const UploadPhotoButton = styled.button`
-  font-family: inherit;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
@@ -147,7 +157,7 @@ export const UploadPhotoButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  width: 126px;
+  width: 160px;
   height: 42px;
   padding: 0;
   box-sizing: border-box;
@@ -161,12 +171,17 @@ export const UploadPhotoButton = styled.button`
   @media screen and (min-width: 768px) {
     font-size: 14px;
     line-height: 1.29;
-    width: 146px;
     height: 42px;
+  }
+  input {
+    &::-webkit-file-upload-button {
+      background-color: transparent;
+      border: none;
+    }
   }
 `;
 
-export const Input = styled(Field)`
+export const Input = styled(({ hasError, ...props }) => <Field {...props} />)`
   font-family: inherit;
   font-weight: 500;
   font-size: 14px;
@@ -175,6 +190,7 @@ export const Input = styled(Field)`
   color: #262626;
   border: 1px solid #f6b83d;
   border-radius: 30px;
+  outline: ${props => (props.hasError ? '1px solid #ef2447' : 'none')};
   width: 100%;
   padding: 12px;
   box-sizing: border-box;
@@ -196,6 +212,11 @@ export const Input = styled(Field)`
       font-size: 16px;
       line-height: 1.25;
     }
+  }
+
+  &:focus {
+    outline: ${props =>
+      props.hasError ? '1px solid #ef2447' : '1px solid var(--accent-color)'};
   }
 `;
 
@@ -223,4 +244,23 @@ export const SaveButton = styled.button`
   &:hover {
     background-color: #f9b020;
   }
+`;
+
+export const ErrorWrapper = styled.span`
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #ef2447;
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+    line-height: 1.17;
+  }
+`;
+
+export const ErrorURLWrapper = styled(ErrorWrapper)`
+  position: absolute;
+  top: -15px;
+  left: 0;
 `;
