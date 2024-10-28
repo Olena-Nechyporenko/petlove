@@ -1,10 +1,10 @@
-import { NoticesListItem } from 'components/NoticesListItem/NoticesListItem';
-import { List } from './NoticesList.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectFilteredNotices, selectFilters } from 'redux/notices/selectors';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllNotices } from 'redux/notices/operations';
 import { getFavorites } from 'redux/favorites/operations';
+import { selectFilteredNotices, selectFilters } from 'redux/notices/selectors';
+import { NoticesListItem } from 'components/NoticesListItem/NoticesListItem';
+import { List } from './NoticesList.styled';
 
 export const NoticesList = () => {
   const dispatch = useDispatch();

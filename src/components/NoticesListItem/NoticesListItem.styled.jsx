@@ -12,7 +12,7 @@ export const Item = styled.li`
   flex-direction: column;
 
   @media screen and (min-width: 768px) {
-    flex-basis: calc((100% - 20px) / 2);
+    width: 340px;
   }
 
   @media screen and (min-width: 1280px) {

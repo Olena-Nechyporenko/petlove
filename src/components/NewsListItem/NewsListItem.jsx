@@ -1,13 +1,6 @@
 import { format } from 'date-fns';
 import { ImgWrapper, Item } from './NewsListItem.styled';
-import {
-  Img,
-  NewTitle,
-  Description,
-  DateWrapper,
-  Date,
-  ReadMoreLink,
-} from './NewsListItem.styled';
+import { Img, NewTitle, Description, DateWrapper, Date, ReadMoreLink } from './NewsListItem.styled';
 
 export const NewsListItem = ({ newInfo }) => {
   const { imgUrl, title, text, date, url } = newInfo;

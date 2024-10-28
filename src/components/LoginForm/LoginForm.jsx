@@ -1,5 +1,8 @@
-import * as Yup from 'yup';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Formik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { logIn } from 'redux/auth/operations';
 import {
   FormWrapper,
   SubTitle,
@@ -15,9 +18,6 @@ import {
   Link,
   InputWrapper,
 } from './LoginForm.styled';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth/operations';
 
 const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 
@@ -27,10 +27,7 @@ const initialValues = {
 };
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .matches(emailRegex, 'Enter a valid Email')
-    .required('Email is a required field')
-    .trim(),
+  email: Yup.string().matches(emailRegex, 'Enter a valid Email').required('Email is a required field').trim(),
   password: Yup.string()
     .min(7, 'Password must be at least 7 characters long.')
     .required('Password is a required field')
@@ -63,26 +60,15 @@ export const LoginForm = () => {
   return (
     <FormWrapper>
       <Title>Log in</Title>
-      <SubTitle>
-        Welcome! Please enter your credentials to login to the platform:
-      </SubTitle>
+      <SubTitle>Welcome! Please enter your credentials to login to the platform:</SubTitle>
 
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={submitForm}
-      >
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitForm}>
         {({ errors, touched }) => (
           <StyledForm>
             <FieldsWrapper>
               <label>
                 <InputWrapper>
-                  <Input
-                    type="text"
-                    name="email"
-                    placeholder={'Email'}
-                    hasError={errors.email && touched.email}
-                  />
+                  <Input type="text" name="email" placeholder={'Email'} hasError={errors.email && touched.email} />
                 </InputWrapper>
 
                 <ErrorWrapper>

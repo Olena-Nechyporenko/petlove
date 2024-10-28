@@ -1,5 +1,10 @@
-import * as Yup from 'yup';
 import { useEffect } from 'react';
+import { Formik, ErrorMessage } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import * as Yup from 'yup';
+import { editUserInfo } from 'redux/userProfile/operations';
+import { setAvatar } from 'redux/userProfile/userProfileSlice';
+import { selectFullUserInfo, selectUserAvatar } from 'redux/userProfile/selectors';
 import {
   BackDrop,
   Modal,
@@ -16,14 +21,6 @@ import {
   ErrorWrapper,
 } from './EditUserModal.styled';
 import img from '../../images/icon.jpg';
-import { Formik, ErrorMessage } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectFullUserInfo,
-  selectUserAvatar,
-} from 'redux/userProfile/selectors';
-import { editUserInfo } from 'redux/userProfile/operations';
-import { setAvatar } from 'redux/userProfile/userProfileSlice';
 
 const regex = {
   urlRegex: /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
@@ -34,12 +31,8 @@ const regex = {
 const validationSchema = Yup.object().shape({
   avatar: Yup.string().matches(regex.urlRegex, 'Invalid url format'),
   name: Yup.string().required('Name is a required field'),
-  email: Yup.string()
-    .matches(regex.emailRegex, 'Invalid email format')
-    .required('Email is a required field'),
-  phone: Yup.string()
-    .matches(regex.phoneRegex, 'Invalid phone number format')
-    .required('Phone is a required field'),
+  email: Yup.string().matches(regex.emailRegex, 'Invalid email format').required('Email is a required field'),
+  phone: Yup.string().matches(regex.phoneRegex, 'Invalid phone number format').required('Phone is a required field'),
 });
 
 export const EditUserModal = ({ onClose }) => {
@@ -111,20 +104,8 @@ export const EditUserModal = ({ onClose }) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              d="M18 6L6 18"
-              stroke="#262626"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M6 6L18 18"
-              stroke="#262626"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <path d="M18 6L6 18" stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M6 6L18 18" stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </CloseIcon>
           <Title>Edit information</Title>
           <ImgWrapper>
@@ -146,13 +127,7 @@ export const EditUserModal = ({ onClose }) => {
                 <InputAndButtonWrapp>
                   <UploadPhotoButton type="button" onClick={triggerFileInput}>
                     Upload photo
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M12 12L9 9L6 12"
                         stroke="#F6B83D"
@@ -192,23 +167,13 @@ export const EditUserModal = ({ onClose }) => {
                   />
                 </InputAndButtonWrapp>
                 <label>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder={'Name'}
-                    hasError={errors.name && touched.name}
-                  />
+                  <Input type="text" name="name" placeholder={'Name'} hasError={errors.name && touched.name} />
                   <ErrorWrapper>
                     <ErrorMessage name="name" />
                   </ErrorWrapper>
                 </label>
                 <label>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder={'Email'}
-                    hasError={errors.email && touched.email}
-                  />
+                  <Input type="email" name="email" placeholder={'Email'} hasError={errors.email && touched.email} />
                   <ErrorWrapper>
                     <ErrorMessage name="email" />
                   </ErrorWrapper>

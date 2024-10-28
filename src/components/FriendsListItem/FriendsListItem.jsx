@@ -9,9 +9,9 @@ import {
   DescrItem,
   DescrInfo,
 } from './FriendsListItem.styled';
+
 export const FriendsListItem = ({ friendInfo }) => {
-  const { imageUrl, url, title, email, address, addressUrl, phone } =
-    friendInfo;
+  const { imageUrl, url, title, email, address, addressUrl, phone } = friendInfo;
 
   return (
     <Item>
@@ -24,11 +24,7 @@ export const FriendsListItem = ({ friendInfo }) => {
         <DescrList>
           <DescrItem>
             Email:
-            <a
-              href={`mailto:${email}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">
               <DescrInfo text={email || 'not specified'} length={23} />
             </a>
           </DescrItem>

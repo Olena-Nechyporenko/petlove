@@ -1,9 +1,9 @@
-import { FriendsListItem } from 'components/FriendsListItem/FriendsListItem';
-import { List } from './FriendsList.styled';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllFriends } from 'redux/friends/selectors';
-import { useEffect } from 'react';
 import { getAllFriends } from 'redux/friends/operations';
+import { FriendsListItem } from 'components/FriendsListItem/FriendsListItem';
+import { List } from './FriendsList.styled';
 
 export const FriendsList = () => {
   const dispatch = useDispatch();

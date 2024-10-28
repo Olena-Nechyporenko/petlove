@@ -1,5 +1,6 @@
-import * as Yup from 'yup';
+import { useState } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
+// import * as Yup from 'yup';
 import {
   AddPetFormWrapper,
   Title,
@@ -27,7 +28,6 @@ import {
   BackLink,
   SubmitButton,
 } from './AddPetForm.styled';
-import { useState } from 'react';
 import img from '../../images/register-tab.jpg';
 
 const types = ['Dog', 'Cat', 'Monkey', 'Bird', 'Snake', 'Turtle', 'Lizard'];
@@ -36,20 +36,18 @@ const typeOptions = types.map(type => {
   return { value: type, label: type };
 });
 
-const regex = {
-  urlRegex: /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
-  birthdayRegex: /^\d{4}-\d{2}-\d{2}$/,
-};
+// const regex = {
+//   urlRegex: /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/,
+//   birthdayRegex: /^\d{4}-\d{2}-\d{2}$/,
+// };
 
-const validationSchema = Yup.object().shape({
-  avatar: Yup.string().matches(regex.urlRegex, 'Invalid url format').required(),
-  title: Yup.string().required('Title is a required field'),
-  name: Yup.string().required('Name is a required field'),
-  birthday: Yup.string()
-    .matches(regex.birthdayRegex, 'Invalid date format')
-    .required('Birthday is a required field'),
-  species: Yup.string().required('Species is a required field'),
-});
+// const validationSchema = Yup.object().shape({
+//   avatar: Yup.string().matches(regex.urlRegex, 'Invalid url format').required(),
+//   title: Yup.string().required('Title is a required field'),
+//   name: Yup.string().required('Name is a required field'),
+//   birthday: Yup.string().matches(regex.birthdayRegex, 'Invalid date format').required('Birthday is a required field'),
+//   species: Yup.string().required('Species is a required field'),
+// });
 
 export const AddPetForm = () => {
   const [petSex, setPetSex] = useState('male');
@@ -185,12 +183,7 @@ export const AddPetForm = () => {
           <FieldsWrapper>
             <InputAndButtonWrapp>
               <label>
-                <InputUrl
-                  type="url"
-                  name="avatar"
-                  value=""
-                  placeholder="Enter URL"
-                />
+                <InputUrl type="url" name="avatar" value="" placeholder="Enter URL" />
                 <ErrorWrapper>
                   <ErrorMessage name="avatar" />
                 </ErrorWrapper>
@@ -198,13 +191,7 @@ export const AddPetForm = () => {
 
               <UploadPhotoButton>
                 Upload photo
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M12 12L9 9L6 12"
                     stroke="#F6B83D"
@@ -237,23 +224,13 @@ export const AddPetForm = () => {
               </UploadPhotoButton>
             </InputAndButtonWrapp>
             <label>
-              <Input
-                type="text"
-                name="title"
-                placeholder={'Title'}
-                value={''}
-              />
+              <Input type="text" name="title" placeholder={'Title'} value={''} />
               <ErrorWrapper>
                 <ErrorMessage name="title" />
               </ErrorWrapper>
             </label>
             <label>
-              <Input
-                type="text"
-                name="name"
-                placeholder={'Pet`s Name'}
-                value={''}
-              />
+              <Input type="text" name="name" placeholder={'Pet`s Name'} value={''} />
               <ErrorWrapper>
                 <ErrorMessage name="name" />
               </ErrorWrapper>
@@ -261,12 +238,7 @@ export const AddPetForm = () => {
 
             <BirthdayTypeWrapper>
               <label>
-                <BirthdayInput
-                  type="text"
-                  name="birthday"
-                  placeholder={'00.00.0000'}
-                  value={''}
-                />
+                <BirthdayInput type="text" name="birthday" placeholder={'00.00.0000'} value={''} />
                 <ErrorWrapper>
                   <ErrorMessage name="birthday" />
                 </ErrorWrapper>

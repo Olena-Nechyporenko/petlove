@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setKeyword } from 'redux/news/newsSlice';
 import {
   SearchBarWrapper,
   Title,
@@ -9,8 +11,6 @@ import {
   SearchButton,
   SearchIcon,
 } from './SearchBar.styled';
-import { useDispatch } from 'react-redux';
-import { setKeyword } from 'redux/news/newsSlice';
 
 export const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
@@ -38,13 +38,7 @@ export const SearchBar = () => {
         />
         {searchText.trim().length > 0 && (
           <ClearButton type="submit" onClick={handleClearSearch}>
-            <Icon
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <Icon width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M14.25 3.75L3.75 14.25M3.75003 3.75L14.25 14.25"
                 stroke="#262626"
@@ -56,13 +50,7 @@ export const SearchBar = () => {
           </ClearButton>
         )}
         <SearchButton type="submit" onClick={handleSubmit}>
-          <SearchIcon
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <SearchIcon width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M8.25 14.25C11.5637 14.25 14.25 11.5637 14.25 8.25C14.25 4.93629 11.5637 2.25 8.25 2.25C4.93629 2.25 2.25 4.93629 2.25 8.25C2.25 11.5637 4.93629 14.25 8.25 14.25Z"
               stroke="#262626"

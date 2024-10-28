@@ -1,5 +1,12 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { parseISO, format } from 'date-fns';
+import { useAuth } from 'hooks/useAuth';
+import { selectFavorites } from 'redux/favorites/selectors';
+import { setViewedNotices } from 'redux/favorites/favoritesSlice';
+import { addFavorites, getFavorites, removeFavorites } from 'redux/favorites/operations';
+import { AnimalInfoModal } from 'components/AnimalInfoModal/AnimalInfoModal';
+import { AttentionModal } from 'components/AttentionModal/AttentionModal';
 import {
   Item,
   ImgWrapper,
@@ -18,31 +25,9 @@ import {
   EmptyHeartIcon,
   FillHeartIcon,
 } from './NoticesListItem.styled';
-import { AnimalInfoModal } from 'components/AnimalInfoModal/AnimalInfoModal';
-import { useAuth } from 'hooks/useAuth';
-import { AttentionModal } from 'components/AttentionModal/AttentionModal';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  addFavorites,
-  getFavorites,
-  removeFavorites,
-} from 'redux/favorites/operations';
-import { selectFavorites } from 'redux/favorites/selectors';
-import { setViewedNotices } from 'redux/favorites/favoritesSlice';
 
 export const NoticesListItem = ({ noticeInfo }) => {
-  const {
-    _id,
-    imgURL,
-    title,
-    popularity,
-    name,
-    birthday,
-    sex,
-    species,
-    category,
-    comment,
-  } = noticeInfo;
+  const { _id, imgURL, title, popularity, name, birthday, sex, species, category, comment } = noticeInfo;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isLoggedIn } = useAuth();
@@ -130,11 +115,7 @@ export const NoticesListItem = ({ noticeInfo }) => {
       </Item>
       {isModalOpen &&
         (isLoggedIn ? (
-          <AnimalInfoModal
-            animalInfo={noticeInfo}
-            birthday={formatedDate}
-            onClose={handleToggleModal}
-          />
+          <AnimalInfoModal animalInfo={noticeInfo} birthday={formatedDate} onClose={handleToggleModal} />
         ) : (
           <AttentionModal onClose={handleToggleModal} />
         ))}

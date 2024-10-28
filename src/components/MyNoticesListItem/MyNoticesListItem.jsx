@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { parseISO, format } from 'date-fns';
+import { AnimalInfoModal } from 'components/AnimalInfoModal/AnimalInfoModal';
 import {
   NoticesItem,
   ImgWrapper,
@@ -16,21 +17,9 @@ import {
   LearnMoreButton,
   DeleteButton,
 } from './MyNoticesListItem.styled';
-import { AnimalInfoModal } from 'components/AnimalInfoModal/AnimalInfoModal';
 
 export const MyNoticesListItem = ({ petData, onDelete }) => {
-  const {
-    _id,
-    imgURL,
-    title,
-    popularity,
-    name,
-    birthday,
-    sex,
-    species,
-    category,
-    comment,
-  } = petData;
+  const { _id, imgURL, title, popularity, name, birthday, sex, species, category, comment } = petData;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const formatedDate = () => {
@@ -91,13 +80,7 @@ export const MyNoticesListItem = ({ petData, onDelete }) => {
             Learn more
           </LearnMoreButton>
           <DeleteButton type="button" onClick={() => onDelete(_id)}>
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M2.25 4.5H3.75H15.75"
                 stroke="#F6B83D"
@@ -130,13 +113,7 @@ export const MyNoticesListItem = ({ petData, onDelete }) => {
           </DeleteButton>
         </LearnMoreWrapper>
       </NoticesItem>
-      {isModalOpen && (
-        <AnimalInfoModal
-          animalInfo={petData}
-          birthday={formatedDate}
-          onClose={handleToggleModal}
-        />
-      )}
+      {isModalOpen && <AnimalInfoModal animalInfo={petData} birthday={formatedDate} onClose={handleToggleModal} />}
     </>
   );
 };

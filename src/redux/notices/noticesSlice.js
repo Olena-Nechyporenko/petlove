@@ -41,6 +41,13 @@ const noticesSlice = createSlice({
     setPopularity(state, action) {
       state.filters.popularity = action.payload;
     },
+    setResetFilters(state, action) {
+      state.filters.keyword = action.payload;
+      state.filters.category = action.payload;
+      state.filters.gender = action.payload;
+      state.filters.type = action.payload;
+      state.filters.popularity = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -70,7 +77,13 @@ const noticesSlice = createSlice({
   },
 });
 
-export const { setKeyword, setCategory, setGender, setType, setPopularity } =
-  noticesSlice.actions;
+export const {
+  setKeyword,
+  setCategory,
+  setGender,
+  setType,
+  setPopularity,
+  setResetFilters,
+} = noticesSlice.actions;
 
 export const noticesReducer = noticesSlice.reducer;

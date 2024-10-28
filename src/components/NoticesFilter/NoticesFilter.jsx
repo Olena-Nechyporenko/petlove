@@ -1,4 +1,16 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
+import { getAllCategories, getAllSex, getAllSpecies } from 'redux/notices/operations';
+import { selectAllCategories, selectAllSex, selectAllSpecies, selectFilters } from 'redux/notices/selectors';
+import {
+  setCategory,
+  setGender,
+  setKeyword,
+  setPopularity,
+  setResetFilters,
+  setType,
+} from 'redux/notices/noticesSlice';
 import {
   FormWrapper,
   Icon,
@@ -16,35 +28,21 @@ import {
   Line,
   UnderLineContainer,
   SortingButton,
+  ResetFiltersButton,
 } from './NoticesFilter.styled';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  getAllCategories,
-  getAllSex,
-  getAllSpecies,
-} from 'redux/notices/operations';
-import {
-  selectAllCategories,
-  selectAllSex,
-  selectAllSpecies,
-} from 'redux/notices/selectors';
-import {
-  setCategory,
-  setGender,
-  setKeyword,
-  setPopularity,
-  setType,
-} from 'redux/notices/noticesSlice';
 
 export const NoticesFilter = () => {
   const [searchValue, setSearchValue] = useState('');
   const [valueChecked, setValueChecked] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedGender, setSelectedGender] = useState(null);
+  const [selectedType, setSelectedType] = useState(null);
 
   const dispatch = useDispatch();
   const categories = useSelector(selectAllCategories);
   const genders = useSelector(selectAllSex);
   const types = useSelector(selectAllSpecies);
+  const allFilters = useSelector(selectFilters);
 
   const categoriesOptions = categories.map(category => {
     return { value: category, label: category };
@@ -56,18 +54,22 @@ export const NoticesFilter = () => {
     return { value: type, label: type };
   });
 
+  const isFiltersActive = Object.values(allFilters).some(value => value !== null && value !== '');
+
   useEffect(() => {
     dispatch(getAllCategories());
     dispatch(getAllSex());
     dispatch(getAllSpecies());
   }, [dispatch]);
 
-  const handleClearSearch = () => {
-    setSearchValue('');
-    dispatch(setKeyword(searchValue));
-  };
+  useEffect(() => {
+    if (searchValue === '') {
+      dispatch(setKeyword(searchValue));
+    }
+  }, [searchValue, dispatch]);
 
   const handleCategoryChange = selectedOption => {
+    setSelectedCategory(selectedOption);
     if (selectedOption.value === 'show all') {
       dispatch(setCategory(null));
     } else {
@@ -76,6 +78,7 @@ export const NoticesFilter = () => {
   };
 
   const handleGenderChange = selectedOption => {
+    setSelectedGender(selectedOption);
     if (selectedOption.value === 'show all') {
       dispatch(setGender(null));
     } else {
@@ -84,6 +87,7 @@ export const NoticesFilter = () => {
   };
 
   const handleTypeChange = selectedOption => {
+    setSelectedType(selectedOption);
     if (selectedOption.value === 'show all') {
       dispatch(setType(null));
     } else {
@@ -105,6 +109,15 @@ export const NoticesFilter = () => {
     dispatch(setKeyword(searchValue));
   };
 
+  const handleResetFilters = () => {
+    setSelectedCategory(null);
+    setSelectedGender(null);
+    setSelectedType(null);
+    setSearchValue('');
+    setValueChecked(null);
+    dispatch(setResetFilters(''));
+  };
+
   return (
     <Formik initialValues={{ search: searchValue }} onSubmit={handleSubmit}>
       <Form autoComplete="off">
@@ -119,14 +132,8 @@ export const NoticesFilter = () => {
                 onChange={e => setSearchValue(e.target.value)}
               />
               {searchValue.trim().length > 0 && (
-                <ClearButton type="button" onClick={handleClearSearch}>
-                  <Icon
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 18"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                <ClearButton type="button" onClick={() => setSearchValue('')}>
+                  <Icon width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M14.25 3.75L3.75 14.25M3.75003 3.75L14.25 14.25"
                       stroke="#262626"
@@ -138,13 +145,7 @@ export const NoticesFilter = () => {
                 </ClearButton>
               )}
               <SearchButton type="submit">
-                <Icon
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <Icon width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M8.25 14.25C11.5637 14.25 14.25 11.5637 14.25 8.25C14.25 4.93629 11.5637 2.25 8.25 2.25C4.93629 2.25 2.25 4.93629 2.25 8.25C2.25 11.5637 4.93629 14.25 8.25 14.25Z"
                     stroke="#262626"
@@ -168,6 +169,7 @@ export const NoticesFilter = () => {
                 <DropDown
                   options={categoriesOptions}
                   name="category"
+                  value={selectedCategory}
                   onChange={handleCategoryChange}
                   placeholder="Category"
                   styles={customDropDownStyles}
@@ -177,6 +179,7 @@ export const NoticesFilter = () => {
                 <DropDown
                   options={genderOptions}
                   name="gender"
+                  value={selectedGender}
                   onChange={handleGenderChange}
                   placeholder="By gender"
                   styles={customDropDownStyles}
@@ -188,6 +191,7 @@ export const NoticesFilter = () => {
               <DropDown
                 options={typeOptions}
                 name="type"
+                value={selectedType}
                 onChange={handleTypeChange}
                 placeholder="By type"
                 styles={customDropDownStylesForType}
@@ -264,6 +268,11 @@ export const NoticesFilter = () => {
                 </Icon>
               )}
             </SortingButton>
+            {isFiltersActive && (
+              <ResetFiltersButton type="button" onClick={handleResetFilters}>
+                Reset filters
+              </ResetFiltersButton>
+            )}
           </UnderLineContainer>
         </FormWrapper>
       </Form>

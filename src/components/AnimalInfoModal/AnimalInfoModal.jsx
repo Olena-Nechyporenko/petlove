@@ -1,5 +1,8 @@
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactStars from 'react-rating-stars-component';
+import { selectFavorites } from 'redux/favorites/selectors';
+import { addFavorites, getFavorites, removeFavorites } from 'redux/favorites/operations';
 import {
   BackDrop,
   Modal,
@@ -22,26 +25,9 @@ import {
   FillHeartIcon,
   ContactBtn,
 } from './AnimalInfoModal.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectFavorites } from 'redux/favorites/selectors';
-import {
-  addFavorites,
-  getFavorites,
-  removeFavorites,
-} from 'redux/favorites/operations';
 
 export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
-  const {
-    _id,
-    imgURL,
-    title,
-    popularity,
-    name,
-    sex,
-    species,
-    category,
-    comment,
-  } = animalInfo;
+  const { _id, imgURL, title, popularity, name, sex, species, category, comment } = animalInfo;
   const favorites = useSelector(selectFavorites);
   const dispatch = useDispatch();
 
@@ -50,8 +36,7 @@ export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
   const normalizedRating = rating => {
     const minRating = 3;
     const maxRating = 273;
-    const normalizedRating =
-      ((rating - minRating) / (maxRating - minRating)) * 5;
+    const normalizedRating = ((rating - minRating) / (maxRating - minRating)) * 5;
     return normalizedRating;
   };
 
@@ -96,20 +81,8 @@ export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              d="M18 6L6 18"
-              stroke="#262626"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M6 6L18 18"
-              stroke="#262626"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <path d="M18 6L6 18" stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M6 6L18 18" stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </CloseIcon>
 
           <ImgAndSpeciesWrapper>
@@ -158,18 +131,12 @@ export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
 
           <ButtonsWrapper>
             {isInFavorites ? (
-              <FavoriteBtn
-                type="button"
-                onClick={() => handleRemoveFavorites(_id)}
-              >
+              <FavoriteBtn type="button" onClick={() => handleRemoveFavorites(_id)}>
                 Remove from
                 <FillHeartIcon />
               </FavoriteBtn>
             ) : (
-              <FavoriteBtn
-                type="button"
-                onClick={() => handleAddFavorites(_id)}
-              >
+              <FavoriteBtn type="button" onClick={() => handleAddFavorites(_id)}>
                 Add to
                 <EmptyHeartIcon />
               </FavoriteBtn>

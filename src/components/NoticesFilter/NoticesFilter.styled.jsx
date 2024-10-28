@@ -289,3 +289,30 @@ export const SortingButton = styled.button`
     padding: 14px;
   }
 `;
+
+export const ResetFiltersButton = styled.button`
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.03em;
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: #f6b83d;
+  color: #fff;
+  transition: all var(--main-transition);
+
+  &:hover {
+    background-color: #fff;
+    color: #262626;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.25;
+    padding: 14px 20px;
+    margin-left: auto;
+  }
+`;

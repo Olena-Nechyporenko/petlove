@@ -9,12 +9,12 @@ export const List = styled.ul`
   @media screen and (min-width: 768px) {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 20px;
+    justify-content: space-between;
     padding-top: 32px;
   }
 
   @media screen and (min-width: 1280px) {
-    gap: 40px 32px;
+    justify-content: flex-start;
     padding: 40px 32px 0;
   }
 `;

@@ -1,15 +1,11 @@
-import { NewsListItem } from 'components/NewsListItem/NewsListItem';
-import { List, PaginationContainer } from './NewList.styled';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getAllNews } from 'redux/news/operations';
-import {
-  selectAllNews,
-  selectKeyword,
-  selectTotalPages,
-} from 'redux/news/selectors';
+import { useDispatch, useSelector } from 'react-redux';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
+import { getAllNews } from 'redux/news/operations';
+import { selectAllNews, selectKeyword, selectTotalPages } from 'redux/news/selectors';
+import { NewsListItem } from 'components/NewsListItem/NewsListItem';
+import { List, PaginationContainer } from './NewList.styled';
 
 export const NewsList = () => {
   const [currentPage, setCurrentPage] = useState(1);

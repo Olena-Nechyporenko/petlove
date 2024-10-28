@@ -1,19 +1,8 @@
-import {
-  Container,
-  ImgWrapper,
-  Img,
-  UploadPhotoButton,
-  Title,
-  InfoList,
-  InfoItem,
-} from './UserBlock.styled.jsx';
-import img from '../../images/icon.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectFullUserInfo,
-  selectUserAvatar,
-} from 'redux/userProfile/selectors.js';
 import { setAvatar } from 'redux/userProfile/userProfileSlice.js';
+import { selectFullUserInfo, selectUserAvatar } from 'redux/userProfile/selectors.js';
+import { Container, ImgWrapper, Img, UploadPhotoButton, Title, InfoList, InfoItem } from './UserBlock.styled.jsx';
+import img from '../../images/icon.jpg';
 
 export const UserBlock = () => {
   const userInfo = useSelector(selectFullUserInfo);
@@ -49,20 +38,12 @@ export const UserBlock = () => {
       <UploadPhotoButton type="button" onClick={triggerFileInput}>
         Upload photo
       </UploadPhotoButton>
-      <input
-        type="file"
-        id="fileInput"
-        style={{ display: 'none' }}
-        accept="image/*"
-        onChange={handleFileChange}
-      />
+      <input type="file" id="fileInput" style={{ display: 'none' }} accept="image/*" onChange={handleFileChange} />
       <Title>My information</Title>
       <InfoList>
         <InfoItem>{userInfo.name}</InfoItem>
         <InfoItem>{userInfo.email}</InfoItem>
-        <InfoItem>
-          {userInfo.phone === '' ? '+380' : `${userInfo.phone}`}
-        </InfoItem>
+        <InfoItem>{userInfo.phone === '' ? '+380' : `${userInfo.phone}`}</InfoItem>
       </InfoList>
     </Container>
   );

@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks/useAuth';
+import { logOut } from 'redux/auth/operations';
 import {
   CloseButton,
   CloseIcon,
@@ -14,8 +16,6 @@ import {
   BackDrop,
   LogOutBtn,
 } from './MobileMenu.styled';
-import { useDispatch } from 'react-redux';
-import { logOut } from 'redux/auth/operations';
 
 export const MobileMenu = ({ onClose, ishomepage }) => {
   const dispatch = useDispatch();
@@ -36,50 +36,14 @@ export const MobileMenu = ({ onClose, ishomepage }) => {
         <Container>
           <CloseButton type="button" onClick={closeMobileMenu}>
             {ishomepage === 'true' ? (
-              <CloseIcon
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M24 8L8 24"
-                  stroke="#262626"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M8 8L24 24"
-                  stroke="#262626"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+              <CloseIcon width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 8L8 24" stroke="#262626" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M8 8L24 24" stroke="#262626" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
               </CloseIcon>
             ) : (
-              <CloseIcon
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M24 8L8 24"
-                  stroke="white"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M8 8L24 24"
-                  stroke="white"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+              <CloseIcon width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 8L8 24" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M8 8L24 24" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
               </CloseIcon>
             )}
           </CloseButton>
@@ -103,11 +67,7 @@ export const MobileMenu = ({ onClose, ishomepage }) => {
             </MobileNavList>
           </Nav>
           {isLoggedIn ? (
-            <LogOutBtn
-              type="button"
-              onClick={() => dispatch(logOut())}
-              ishomepage={ishomepage}
-            >
+            <LogOutBtn type="button" onClick={() => dispatch(logOut())} ishomepage={ishomepage}>
               Log out
             </LogOutBtn>
           ) : (

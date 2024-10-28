@@ -46,20 +46,8 @@ export const AttentionModal = ({ onClose }) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              d="M18 6L6 18"
-              stroke="#262626"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M6 6L18 18"
-              stroke="#262626"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <path d="M18 6L6 18" stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M6 6L18 18" stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </CloseIcon>
 
           <ImgWrapper>
@@ -69,10 +57,9 @@ export const AttentionModal = ({ onClose }) => {
           <Title>Attention</Title>
 
           <Text>
-            We would like to remind you that certain functionality is available
-            only to authorized users.If you have an account, please log in with
-            your credentials. If you do not already have an account, you must
-            register to access these features.
+            We would like to remind you that certain functionality is available only to authorized users.If you have an
+            account, please log in with your credentials. If you do not already have an account, you must register to
+            access these features.
           </Text>
 
           <LinksWrapper>

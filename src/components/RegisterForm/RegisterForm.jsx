@@ -1,5 +1,8 @@
-import * as Yup from 'yup';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Formik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { register } from 'redux/auth/operations';
 import {
   FormWrapper,
   SubTitle,
@@ -15,9 +18,6 @@ import {
   Link,
   InputWrapper,
 } from './RegisterForm.styled';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { register } from 'redux/auth/operations';
 
 const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 
@@ -30,10 +30,7 @@ const initialValues = {
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Name is a required field').trim(),
-  email: Yup.string()
-    .matches(emailRegex, 'Enter a valid Email')
-    .required('Email is a required field')
-    .trim(),
+  email: Yup.string().matches(emailRegex, 'Enter a valid Email').required('Email is a required field').trim(),
   password: Yup.string()
     .min(7, 'Password must be at least 7 characters long.')
     .required('Password is a required field')
@@ -75,22 +72,13 @@ export const RegisterForm = () => {
       <Title>Registration</Title>
       <SubTitle>Thank you for your interest in our platform.</SubTitle>
 
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={submitForm}
-      >
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submitForm}>
         {({ errors, touched }) => (
           <StyledForm>
             <FieldsWrapper>
               <label>
                 <InputWrapper>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder={'Name'}
-                    hasError={errors.name && touched.name}
-                  />
+                  <Input type="text" name="name" placeholder={'Name'} hasError={errors.name && touched.name} />
                 </InputWrapper>
 
                 <ErrorWrapper>
@@ -100,12 +88,7 @@ export const RegisterForm = () => {
 
               <label>
                 <InputWrapper>
-                  <Input
-                    type="text"
-                    name="email"
-                    placeholder={'Email'}
-                    hasError={errors.email && touched.email}
-                  />
+                  <Input type="text" name="email" placeholder={'Email'} hasError={errors.email && touched.email} />
                 </InputWrapper>
 
                 <ErrorWrapper>
@@ -166,10 +149,7 @@ export const RegisterForm = () => {
                     type={showPasswordConfirm ? 'text' : 'password'}
                     hasError={errors.passwordConfirm && touched.passwordConfirm}
                   />
-                  <PasswordHideBtn
-                    type="button"
-                    onClick={toggleHidePasswordConfirm}
-                  >
+                  <PasswordHideBtn type="button" onClick={toggleHidePasswordConfirm}>
                     <PasswordIcon
                       width="18"
                       height="18"
