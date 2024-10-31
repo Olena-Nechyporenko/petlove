@@ -17,36 +17,24 @@ export const Section = styled.section`
   }
 `;
 
-export const ImgWrapper = styled.div`
+export const ImageWrapper = styled.div`
+  position: relative;
   width: 100%;
   height: 213px;
   border-radius: 30px;
   overflow: hidden;
+  background-color: var(--main-accent-color);
+  margin-bottom: 10px;
 
   @media screen and (min-width: 768px) {
+    height: 248px;
     border-radius: 60px;
-    height: 248px;
+    margin-bottom: 16px;
   }
 
   @media screen and (min-width: 1280px) {
     width: 592px;
     height: 654px;
-    box-sizing: border-box;
-  }
-`;
-
-export const Img = styled.img`
-  width: 100%;
-  height: 213px;
-  object-fit: cover;
-  object-position: center;
-
-  @media screen and (min-width: 768px) {
-    height: 248px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 592px;
-    height: 654px;
+    margin-bottom: 0;
   }
 `;

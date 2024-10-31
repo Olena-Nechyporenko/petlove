@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IoIosHeartEmpty } from 'react-icons/io';
 import { IoMdHeart } from 'react-icons/io';
+import { MdClear } from 'react-icons/md';
 
 export const BackDrop = styled.div`
   position: fixed;
@@ -8,19 +9,19 @@ export const BackDrop = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 100;
+  z-index: 1100;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(38, 38, 38, 0.3);
+  background-color: var(--modal-backdrop-color);
 `;
 
 export const Modal = styled.div`
   position: absolute;
-  z-index: 200px;
+  z-index: 200;
   width: 335px;
   border-radius: 30px;
-  background-color: var(--light-color);
+  background-color: var(--main-light-txt-color);
 
   @media screen and (min-width: 320px) and (max-width: 375px) {
     width: 95%;
@@ -43,14 +44,27 @@ export const ModalContainer = styled.div`
   }
 `;
 
-export const CloseIcon = styled.svg`
-  width: 24px;
-  height: 24px;
+export const CloseButton = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
   z-index: 210px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--main-dark-txt-color);
+  background-color: transparent;
+  border: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
   cursor: pointer;
+`;
+
+export const CloseIcon = styled(MdClear)`
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
 `;
 
 export const ImgAndSpeciesWrapper = styled.div`
@@ -91,14 +105,14 @@ export const Category = styled.span`
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: -0.02em;
-  color: var(--accent-color);
-  background-color: #fff4df;
+  color: var(--main-accent-color);
+  background-color: var(--secondary-accent-color);
   border-radius: 30px;
   padding: 8px 14px;
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
-    line-height: 1.29;
+    line-height: var(--line-height);
   }
 `;
 
@@ -106,7 +120,7 @@ export const Title = styled.h2`
   font-weight: 700;
   font-size: 16px;
   line-height: 1.25;
-  color: #2b2b2a;
+  color: var(--tertiary-dark-txt-color);
   margin-bottom: 10px;
 
   @media screen and (min-width: 768px) {
@@ -130,7 +144,7 @@ export const Rating = styled.span`
   font-weight: 500;
   font-size: 14px;
   line-height: 1.43;
-  color: #2b2b2a;
+  color: var(--tertiary-dark-txt-color);
 `;
 
 export const DescriptionList = styled.ul`
@@ -144,7 +158,7 @@ export const DescrItem = styled.li`
   font-size: 10px;
   line-height: 1.4;
   letter-spacing: -0.02em;
-  color: rgba(38, 38, 38, 0.5);
+  color: var(--secondary-dark-txt-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,16 +171,16 @@ export const DescrInfo = styled.span`
   line-height: 1.17;
   letter-spacing: -0.02em;
   text-transform: capitalize;
-  color: var(--main-txt-color);
+  color: var(--main-dark-txt-color);
 `;
 
 export const Text = styled.p`
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.29;
+  line-height: var(--line-height);
   letter-spacing: -0.02em;
   text-align: center;
-  color: #2b2b2a;
+  color: var(--tertiary-dark-txt-color);
   margin-bottom: 40px;
 `;
 
@@ -187,8 +201,8 @@ export const FavoriteBtn = styled.button`
   font-size: 16px;
   line-height: 1.25;
   letter-spacing: -0.03em;
-  color: var(--light-color);
-  background: var(--accent-color);
+  color: var(--main-light-txt-color);
+  background: var(--main-accent-color);
   border: none;
   border-radius: 30px;
   padding: 12px 0;
@@ -196,7 +210,7 @@ export const FavoriteBtn = styled.button`
   transition: all var(--main-transition);
 
   &:hover {
-    background-color: #f9b020;
+    background-color: var(--hover-accent-color);
   }
 
   @media screen and (min-width: 768px) {
@@ -205,13 +219,13 @@ export const FavoriteBtn = styled.button`
 `;
 
 export const EmptyHeartIcon = styled(IoIosHeartEmpty)`
-  fill: #fff;
+  fill: currentColor;
   width: 18px;
   height: 18px;
 `;
 
 export const FillHeartIcon = styled(IoMdHeart)`
-  fill: #fff;
+  fill: currentColor;
   width: 18px;
   height: 18px;
 `;
@@ -226,8 +240,8 @@ export const ContactBtn = styled.a`
   font-size: 16px;
   line-height: 1.25;
   letter-spacing: -0.03em;
-  color: var(--accent-color);
-  background-color: #fff4df;
+  color: var(--main-accent-color);
+  background-color: var(--secondary-accent-color);
   border: none;
   border-radius: 30px;
   padding: 12px 0;
@@ -235,7 +249,7 @@ export const ContactBtn = styled.a`
   transition: all var(--main-transition);
 
   &:hover {
-    background-color: #fbe7c1;
+    background-color: var(--hover-secondary-accent-color);
   }
 
   @media screen and (min-width: 768px) {

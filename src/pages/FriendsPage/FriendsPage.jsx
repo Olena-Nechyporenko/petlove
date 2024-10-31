@@ -1,4 +1,4 @@
-import { FriendsList } from 'components/FriendsList/FriendsList';
+import { FriendsList } from 'components/FriendsPageComponents/FriendsList/FriendsList';
 import { Title } from './FriendsPage.styled';
 
 export default function FriendsPage() {

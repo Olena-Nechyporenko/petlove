@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import img from '../../images/register-mob.jpg';
+// import img from '../../images/register-mob.jpg';
 
 export const Section = styled.section`
   padding-bottom: 20px;
@@ -12,7 +12,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  background-color: var(--accent-color);
+  background-color: var(--main-accent-color);
   border-radius: 30px;
   height: 100vh;
 
@@ -22,11 +22,12 @@ export const Container = styled.div`
 `;
 
 export const NumbersWrapper = styled.div`
-  font-weight: 800;
   font-size: 120px;
+  font-weight: 800;
   line-height: 1;
-  color: var(--light-color);
+  color: var(--main-light-txt-color);
   display: flex;
+  align-items: center;
   gap: 8px;
 
   @media screen and (min-width: 768px) {
@@ -36,10 +37,23 @@ export const NumbersWrapper = styled.div`
   }
 `;
 
-export const Image = styled.div`
-  background-image: url(${img});
-  background-position: center;
-  background-size: cover;
+export const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffc24a;
+  border-radius: 50%;
+  width: 109px;
+  height: 109px;
+  overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+    width: 280px;
+    height: 280px;
+  }
+`;
+
+export const Image = styled.img`
   width: 109px;
   height: 109px;
   border-radius: 1000px;
@@ -55,7 +69,7 @@ export const Text = styled.p`
   font-size: 16px;
   line-height: 1.25;
   letter-spacing: -0.03em;
-  color: var(--light-color);
+  color: var(--main-light-txt-color);
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
@@ -66,10 +80,10 @@ export const Text = styled.p`
 export const Link = styled(NavLink)`
   font-weight: 700;
   font-size: 14px;
-  line-height: 1.29;
+  line-height: var(--line-height);
   letter-spacing: -0.03em;
-  color: var(--accent-color);
-  background-color: #fff4df;
+  color: var(--main-accent-color);
+  background-color: var(--secondary-accent-color);
   border-radius: 30px;
   padding: 12px 30px;
   transition: all var(--main-transition);
@@ -81,6 +95,6 @@ export const Link = styled(NavLink)`
   }
 
   &:hover {
-    background-color: #fbe7c1;
+    background-color: var(--hover-secondary-accent-color);
   }
 `;

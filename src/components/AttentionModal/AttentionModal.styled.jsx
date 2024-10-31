@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { MdClear } from 'react-icons/md';
 
 export const BackDrop = styled.div`
   position: fixed;
@@ -7,11 +8,11 @@ export const BackDrop = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 100;
+  z-index: 1100;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(38, 38, 38, 0.3);
+  background-color: var(--modal-backdrop-color);
 `;
 
 export const Modal = styled.div`
@@ -19,7 +20,7 @@ export const Modal = styled.div`
   z-index: 200px;
   width: 335px;
   border-radius: 30px;
-  background-color: var(--light-color);
+  background-color: var(--main-light-txt-color);
 
   @media screen and (min-width: 320px) and (max-width: 375px) {
     width: 95%;
@@ -42,30 +43,40 @@ export const ModalContainer = styled.div`
   }
 `;
 
-export const CloseIcon = styled.svg`
-  width: 24px;
-  height: 24px;
+export const CloseButton = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
   z-index: 210px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--main-dark-txt-color);
+  background-color: transparent;
+  border: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
   cursor: pointer;
 `;
 
-export const ImgWrapper = styled.div`
-  position: relative;
-  border-radius: 100px;
+export const CloseIcon = styled(MdClear)`
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+`;
+
+export const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-accent-color);
+  border-radius: 50%;
   width: 80px;
   height: 80px;
   overflow: hidden;
   margin-bottom: 20px;
-`;
-
-export const Img = styled.img`
-  width: 100%;
-  height: 80px;
-  object-fit: cover;
-  object-position: center;
+  overflow: hidden;
 `;
 
 export const Title = styled.h2`
@@ -73,7 +84,7 @@ export const Title = styled.h2`
   font-size: 20px;
   line-height: 1;
   letter-spacing: -0.03em;
-  color: var(--accent-color);
+  color: var(--main-accent-color);
   margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
@@ -85,10 +96,10 @@ export const Title = styled.h2`
 export const Text = styled.p`
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.29;
+  line-height: var(--line-height);
   letter-spacing: -0.02em;
   text-align: center;
-  color: #2b2b2a;
+  color: var(--tertiary-dark-txt-color);
   margin-bottom: 24px;
 
   @media screen and (min-width: 768px) {
@@ -104,16 +115,18 @@ export const LinksWrapper = styled.div`
 export const LoginLink = styled(NavLink)`
   font-weight: 700;
   font-size: 14px;
-  line-height: 1.29;
+  line-height: var(--line-height);
   letter-spacing: -0.03em;
-  color: var(--light-color);
-  background-color: var(--accent-color);
+  color: var(--main-light-txt-color);
+  background-color: var(--main-accent-color);
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   padding: 12px 48px;
   transition: all var(--main-transition);
 
   &:hover {
-    background-color: #f9b020;
+    background-color: var(--hover-accent-color);
   }
 
   @media screen and (min-width: 768px) {
@@ -126,16 +139,18 @@ export const LoginLink = styled(NavLink)`
 export const RegisterLink = styled(NavLink)`
   font-weight: 700;
   font-size: 14px;
-  line-height: 1.29;
+  line-height: var(--line-height);
   letter-spacing: -0.03em;
-  color: var(--accent-color);
-  background-color: #fff4df;
+  color: var(--main-accent-color);
+  background-color: var(--secondary-accent-color);
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   padding: 12px 24px;
   transition: all var(--main-transition);
 
   &:hover {
-    background-color: #fbe7c1;
+    background-color: var(--hover-secondary-accent-color);
   }
 
   @media screen and (min-width: 768px) {

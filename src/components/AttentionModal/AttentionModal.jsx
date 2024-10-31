@@ -3,16 +3,16 @@ import {
   BackDrop,
   Modal,
   ModalContainer,
+  CloseButton,
   CloseIcon,
-  ImgWrapper,
-  Img,
+  ImageWrapper,
   Title,
   Text,
   LinksWrapper,
   LoginLink,
   RegisterLink,
 } from './AttentionModal.styled';
-import img from '../../images/dog-info-box.png';
+import dogImg from '../../images/login/dog-login-box.png';
 
 export const AttentionModal = ({ onClose }) => {
   useEffect(() => {
@@ -38,21 +38,13 @@ export const AttentionModal = ({ onClose }) => {
     <BackDrop onClick={handleCloseOnBackdrop}>
       <Modal>
         <ModalContainer>
-          <CloseIcon
-            onClick={onClose}
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M18 6L6 18" stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M6 6L18 18" stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </CloseIcon>
+          <CloseButton onClick={onClose}>
+            <CloseIcon />
+          </CloseButton>
 
-          <ImgWrapper>
-            <Img src={img} alt="" />
-          </ImgWrapper>
+          <ImageWrapper>
+            <img src={dogImg} alt="dog" width={44} height={44} />
+          </ImageWrapper>
 
           <Title>Attention</Title>
 

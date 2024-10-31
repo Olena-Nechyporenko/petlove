@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  getAllCategories,
-  getAllNotices,
-  getAllSex,
-  getAllSpecies,
-} from './operations';
+import { getAllCategories, getAllNotices, getAllSex, getAllSpecies } from './operations';
 
 const initialState = {
   notices: [],
@@ -77,13 +72,6 @@ const noticesSlice = createSlice({
   },
 });
 
-export const {
-  setKeyword,
-  setCategory,
-  setGender,
-  setType,
-  setPopularity,
-  setResetFilters,
-} = noticesSlice.actions;
+export const { setKeyword, setCategory, setGender, setType, setPopularity, setResetFilters } = noticesSlice.actions;
 
 export const noticesReducer = noticesSlice.reducer;

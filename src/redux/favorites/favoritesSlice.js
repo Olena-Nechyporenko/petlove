@@ -12,17 +12,13 @@ const favoritesSlice = createSlice({
   initialState,
   reducers: {
     setViewedNotices(state, action) {
-      const exists = state.viewedNotices.some(
-        notice => notice._id === action.payload._id
-      );
+      const exists = state.viewedNotices.some(notice => notice._id === action.payload._id);
       if (!exists) {
         state.viewedNotices.push(action.payload);
       }
     },
     removeViewedNotices(state, action) {
-      const updatedViewed = state.viewedNotices.filter(
-        notice => notice._id !== action.payload._id
-      );
+      const updatedViewed = state.viewedNotices.filter(notice => notice._id !== action.payload);
       state.viewedNotices = updatedViewed;
     },
   },

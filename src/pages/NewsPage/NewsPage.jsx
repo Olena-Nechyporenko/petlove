@@ -1,5 +1,5 @@
-import { NewsList } from 'components/NewsList/NewList';
-import { SearchBar } from 'components/SearchBar/SearchBar';
+import { NewsList } from 'components/NewsPageComponents/NewsList/NewList';
+import { SearchBar } from 'components/NewsPageComponents/SearchBar/SearchBar';
 
 export default function NewsPage() {
   return (

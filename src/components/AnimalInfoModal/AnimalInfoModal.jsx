@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactStars from 'react-rating-stars-component';
@@ -7,6 +8,7 @@ import {
   BackDrop,
   Modal,
   ModalContainer,
+  CloseButton,
   CloseIcon,
   ImgAndSpeciesWrapper,
   ImgWrapper,
@@ -61,11 +63,13 @@ export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
 
   const handleRemoveFavorites = async id => {
     await dispatch(removeFavorites(id));
+    Notiflix.Notify.success(`${name} successfully removed from favorite pets!`);
     dispatch(getFavorites());
   };
 
   const handleAddFavorites = async id => {
     await dispatch(addFavorites(id));
+    Notiflix.Notify.success(`${name} successfully added to favorite pets!`);
     dispatch(getFavorites());
   };
 
@@ -73,21 +77,12 @@ export const AnimalInfoModal = ({ animalInfo, birthday, onClose }) => {
     <BackDrop onClick={handleCloseOnBackdrop}>
       <Modal>
         <ModalContainer>
-          <CloseIcon
-            onClick={onClose}
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M18 6L6 18" stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M6 6L18 18" stroke="#262626" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </CloseIcon>
-
+          <CloseButton onClick={onClose}>
+            <CloseIcon />
+          </CloseButton>
           <ImgAndSpeciesWrapper>
             <ImgWrapper>
-              <Img src={imgURL} alt="" />
+              <Img src={imgURL} alt="Pet" />
             </ImgWrapper>
             <Category>{category}</Category>
           </ImgAndSpeciesWrapper>
